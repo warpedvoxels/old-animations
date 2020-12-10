@@ -1,6 +1,7 @@
-import com.nekkan.oldanimations.*
+
+import com.nekkan.oldanimations.FabricProperties
+import com.nekkan.oldanimations.KotlinProperties
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.gradle.language.jvm.tasks.ProcessResources
 
 plugins {
     kotlin("jvm") version com.nekkan.oldanimations.KotlinProperties.VERSION
@@ -32,9 +33,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.processResources {
     inputs.property("version", project.version)
-    from(sourceSets.main.get().resources.srcDirs) {
-        include("fabric.mod.json")
+    filesMatching("fabric.mod.json") {
         expand("version" to project.version)
-        exclude("fabric.mod.json")
     }
 }
