@@ -8,6 +8,11 @@ plugins {
     java
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 repositories {
     mavenCentral()
     maven { url = uri("http://maven.fabricmc.net/") }
@@ -23,4 +28,13 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.processResources {
+    inputs.property("version", project.version)
+    from(sourceSets.main.get().resources.srcDirs) {
+        include("fabric.mod.json")
+        expand("version" to project.version)
+        exclude("fabric.mod.json")
+    }
 }
