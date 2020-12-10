@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "id": "old-animations",
+    "version": "${version}",
+    "name": "Old Animations",
+    "description": "Backport of animations of older versions to newer versions.",
+    "authors": ["nekkan"],
+    "contact": {
+        "sources": "https://github.com/nekkan/old-animations"
+    },
+    "license": "MIT",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            {
+                "adapter": "kotlin",
+                "value": "com.nekkan.oldanimations.OldAnimations::init"
+            }
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.8.7",
+        "fabric": "*",
+        "fabric-language-kotlin": "*",
+        "minecraft": "1.16.x"
+    }
+}
