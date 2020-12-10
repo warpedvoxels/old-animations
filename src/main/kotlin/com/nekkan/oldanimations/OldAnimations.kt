@@ -5,9 +5,7 @@ import org.apache.logging.log4j.LogManager
 
 const val OLD_ANIMATIONS_REPOSITORY = "https://github.com/nekkan/old-animations"
 
-object OldAnimations {
-    val logger = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
-}
+val OldAnimations = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
 
 /**
  * This code will be obviously updated later. This single-line `println` code will print when the Fabric mod start up.
@@ -19,6 +17,6 @@ fun init() {
      */
     System.setProperty("kotlinx.coroutines.debug", "on")
 
-    OldAnimations.logger.info("Old Animations is up-to-date! Latest version: 1.0-SNAPSHOT for 1.16.x $OLD_ANIMATIONS_REPOSITORY")
+    OldAnimations.info("Old Animations is up-to-date! Latest version: 1.0-SNAPSHOT for 1.16.x $OLD_ANIMATIONS_REPOSITORY")
 }
 
