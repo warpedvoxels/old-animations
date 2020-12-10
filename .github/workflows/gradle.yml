@@ -1,0 +1,51 @@
+# This workflow will build a Kotlin project with Gradle
+name: Kotlin CI with Gradle
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - run: export GRADLE_USER_HOME=`pwd`/.gradle
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+
+      - name: Build with Gradle
+        run: gradle --stacktrace --info --build-cache assemble
+
+      - name: Caching
+        uses: actions/cache@v2.0.0
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/build
+            ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
