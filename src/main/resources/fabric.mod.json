@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "old-animations",
+    "id": "oldanimations",
     "version": "${version}",
     "name": "Old Animations",
     "description": "Backport of animations of older versions to newer versions.",
