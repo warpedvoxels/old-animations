@@ -1,4 +1,5 @@
 
+import com.nekkan.oldanimations.DependencyList
 import com.nekkan.oldanimations.FabricProperties
 import com.nekkan.oldanimations.KotlinProperties
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -25,6 +26,9 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${FabricProperties.FABRIC_VERSION}")
     modImplementation("net.fabricmc:fabric-loader:${FabricProperties.FABRIC_LOADER_VERSION}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${KotlinProperties.FABRIC_KOTLIN_VERSION}")
+    implementation(DependencyList.COROUTINES)
+    implementation(DependencyList.LOG4J_CORE)
+    implementation(DependencyList.LOG4J_API)
 }
 
 tasks.withType<KotlinCompile> {
