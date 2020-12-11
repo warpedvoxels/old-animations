@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager
 
 const val OLD_ANIMATIONS_REPOSITORY = "https://github.com/nekkan/old-animations"
 
+@get:JvmName("getLogger")
 val OldAnimations = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
 
 /**
