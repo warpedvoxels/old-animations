@@ -6,4 +6,9 @@ interface LegacyAnimation {
 
     val identifier: Identifier
 
+    val isEnabled: Boolean
+
+    val isEnabledByDefault: Boolean
+        get() = false
+
 }
