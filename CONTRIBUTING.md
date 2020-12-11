@@ -53,7 +53,7 @@ Start reading our code, and you will get the hang of it. We optimize for readabi
 
 ## Setting up environment
 
-1. Create a fork on GitHub.
+1. Create a fork on GitHub. <br/>
    ![Fork Alt Text](assets/fork.png)
 
 2. Clone the fork you did.
