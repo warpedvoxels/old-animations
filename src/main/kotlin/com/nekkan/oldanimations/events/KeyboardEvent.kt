@@ -1,6 +1,7 @@
 package com.nekkan.oldanimations.events
 
 import com.nekkan.oldanimations.event.Event
+import com.nekkan.oldanimations.event.EventPublisher
 
 sealed class KeyboardEvent: Event.Pre() {
 
@@ -19,7 +20,8 @@ sealed class KeyboardEvent: Event.Pre() {
         override val keyCode: Int,
         override val scanCode: Int,
         override val action: Int,
-        override val modifiers: Int
+        override val modifiers: Int,
+        override val publisher: EventPublisher
     ): KeyboardEvent()
 
     /**
@@ -29,7 +31,8 @@ sealed class KeyboardEvent: Event.Pre() {
         override val keyCode: Int,
         override val scanCode: Int,
         override val action: Int,
-        override val modifiers: Int
+        override val modifiers: Int,
+        override val publisher: EventPublisher
     ): KeyboardEvent()
 
 }
