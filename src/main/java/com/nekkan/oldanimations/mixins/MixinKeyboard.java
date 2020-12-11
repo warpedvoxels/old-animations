@@ -13,18 +13,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Keyboard.class)
 public class MixinKeyboard {
 
-    @Inject(at = @At("HEAD"), method = "onKey")
-    private void preProcessKey(long window, int keyCode, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
+    private void processKey(long window, int keyCode, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
         EventPublisher publisher = OldAnimations.getRedirector();
         Event event = new KeyboardPressEvent(keyCode, scanCode, action, modifiers, publisher, callbackInfo);
         OldAnimations.redirect(event);
     }
 
+    @Inject(at = @At("HEAD"), method = "onKey")
+    private void preProcessKey(long window, int keyCode, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
+        processKey(window, keyCode, scanCode, action, modifiers, callbackInfo);
+    }
+
     @Inject(at = @At("INVOKE"), method = "onKey")
     private void postProcessKey(long window, int keyCode, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
-        EventPublisher publisher = OldAnimations.getRedirector();
-        Event event = new KeyboardPressEvent(keyCode, scanCode, action, modifiers, publisher, callbackInfo);
-        OldAnimations.redirect(event);
+        processKey(window, keyCode, scanCode, action, modifiers, callbackInfo);
     }
 
 }
