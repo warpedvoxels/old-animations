@@ -3,7 +3,7 @@
     "id": "oldanimations",
     "version": "${version}",
     "name": "Old Animations",
-    "description": "Backport of animations of older versions to newer versions.",
+    "description": "Fabric mod to restore Minecraft animations from legacy versions.",
     "authors": ["nekkan"],
     "contact": {
         "sources": "https://github.com/nekkan/old-animations"
