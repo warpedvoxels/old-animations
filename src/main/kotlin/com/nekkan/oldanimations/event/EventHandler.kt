@@ -1,7 +1,7 @@
 package com.nekkan.oldanimations.event
 
-fun interface EventHandler {
+interface EventHandler {
 
-    fun executeFor(event: Event)
+    suspend fun executeFor(event: Event)
 
 }
