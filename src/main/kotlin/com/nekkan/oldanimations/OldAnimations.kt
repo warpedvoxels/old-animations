@@ -2,11 +2,12 @@
 package com.nekkan.oldanimations
 
 import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 
 const val OLD_ANIMATIONS_REPOSITORY = "https://github.com/nekkan/old-animations"
 
 @get:JvmName("getLogger")
-val OldAnimations = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
+val OldAnimations: Logger = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
 
 /**
  * This code will be obviously updated later. This single-line `println` code will print when the Fabric mod start up.
