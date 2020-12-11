@@ -26,6 +26,11 @@ ij_editorconfig_space_before_colon = false
 ij_editorconfig_space_before_comma = false
 ij_editorconfig_spaces_around_assignment_operators = true
 
+[*.java]
+ij_java_space_before_if_parentheses = false
+ij_java_space_before_for_parentheses = false
+ij_java_space_before_switch_parentheses = false
+
 [{*.kt, *.kts}]
 ij_kotlin_align_in_columns_case_branch = false
 ij_kotlin_align_multiline_binary_operation = false
