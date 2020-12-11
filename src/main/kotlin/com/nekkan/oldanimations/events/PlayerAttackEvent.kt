@@ -8,14 +8,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 
 abstract class PlayerAttackEvent {
 
-    open class Pre(
+    data class Pre(
         val attacker: PlayerEntity,
         val attacked: LivingEntity,
         override val publisher: EventPublisher,
         override val callbackInfo: CallbackInfo
     ): Event.Pre()
 
-    open class Post(
+    data class Post(
         val attacker: PlayerEntity,
         val attacked: LivingEntity,
         override val publisher: EventPublisher,
