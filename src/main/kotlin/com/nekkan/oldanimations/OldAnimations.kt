@@ -20,10 +20,13 @@ const val OLD_ANIMATIONS_REPOSITORY = "$GITHUB_BASE_URL/$OLD_ANIMATIONS_REPOSITO
 @get:JvmName("getLogger")
 val OldAnimations: Logger = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
 
-private val eventRedirector = EventRedirector()
-internal val oldAnimationsScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+@get:JvmName("getRedirector")
+val eventRedirector = EventRedirector()
 
-fun Event.redirect() = oldAnimationsScope.launch {
+@JvmSynthetic
+val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
+inline fun Event.redirect() = coroutineScope.launch {
     eventRedirector.publish(this@redirect)
 }
 
