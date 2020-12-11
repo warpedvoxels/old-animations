@@ -27,6 +27,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${FabricProperties.FABRIC_LOADER_VERSION}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${KotlinProperties.FABRIC_KOTLIN_VERSION}")
     implementation(DependencyList.COROUTINES)
+    implementation(DependencyList.COROUTINES_JDK8)
     implementation(DependencyList.LOG4J_CORE)
     implementation(DependencyList.LOG4J_API)
 }
