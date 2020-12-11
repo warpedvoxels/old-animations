@@ -9,7 +9,8 @@ interface LegacyAnimation<T: Event> {
 
     val isEnabled: Boolean
 
-    fun disable()
+    fun disable() { /* no-op */
+    }
 
     fun update(event: T)
 
