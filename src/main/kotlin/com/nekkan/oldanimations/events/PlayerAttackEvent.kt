@@ -6,7 +6,7 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 
-abstract class PlayerCombatEvent {
+abstract class PlayerAttackEvent {
 
     open class Pre(
         val attacker: PlayerEntity,
