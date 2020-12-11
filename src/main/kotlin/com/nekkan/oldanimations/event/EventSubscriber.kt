@@ -6,7 +6,7 @@ import kotlin.reflect.KClass
 
 interface EventSubscriber {
 
-    fun <T: Any> subscribe(forClass: KClass<T>, callback: (T) -> Unit)
+    fun <T: Event> subscribe(forClass: KClass<T>, callback: (T) -> Unit)
 
 }
 
