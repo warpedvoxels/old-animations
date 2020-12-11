@@ -2,6 +2,7 @@
 
 package com.nekkan.oldanimations
 
+import com.nekkan.oldanimations.event.EventRedirector
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
@@ -13,6 +14,8 @@ const val OLD_ANIMATIONS_REPOSITORY = "$GITHUB_BASE_URL/$OLD_ANIMATIONS_REPOSITO
 
 @get:JvmName("getLogger")
 val OldAnimations: Logger = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
+
+private val eventRedirector = EventRedirector()
 
 /**
  * This code will be obviously updated later. This single-line `println` code will print when the Fabric mod start up.
