@@ -4,6 +4,8 @@ object DependencyList: BuildProperties {
 
     const val LOG4J_VERSION = "2.14.0"
 
+    const val SHADOW = "6.1.0"
+
     const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
     const val COROUTINES_JDK8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.2"
 

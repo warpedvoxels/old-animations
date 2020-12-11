@@ -1,4 +1,5 @@
 
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.nekkan.oldanimations.DependencyList
 import com.nekkan.oldanimations.FabricProperties
 import com.nekkan.oldanimations.KotlinProperties
@@ -7,6 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version com.nekkan.oldanimations.KotlinProperties.VERSION
     id("fabric-loom") version com.nekkan.oldanimations.FabricProperties.LOOM_VERSION
+    id("com.github.johnrengelman.shadow") version com.nekkan.oldanimations.DependencyList.SHADOW
     java
 }
 
@@ -26,10 +28,16 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${FabricProperties.FABRIC_VERSION}")
     modImplementation("net.fabricmc:fabric-loader:${FabricProperties.FABRIC_LOADER_VERSION}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${KotlinProperties.FABRIC_KOTLIN_VERSION}")
-    implementation(DependencyList.COROUTINES)
-    implementation(DependencyList.COROUTINES_JDK8)
-    implementation(DependencyList.LOG4J_CORE)
-    implementation(DependencyList.LOG4J_API)
+    api(DependencyList.COROUTINES)
+    api(DependencyList.COROUTINES_JDK8)
+    compileOnly(DependencyList.LOG4J_CORE)
+    compileOnly(DependencyList.LOG4J_API)
+}
+
+tasks.withType<ShadowJar> {
+    // Enable ShadowJAR minimization to reduce the .jar size.
+    // Read more: https://imperceptiblethoughts.com/shadow/configuration/minimizing/
+    minimize()
 }
 
 tasks.withType<KotlinCompile> {
