@@ -3,12 +3,11 @@
     "minVersion": "0.8",
     "package": "com.nekkan.oldanimations.mixins",
     "compatibilityLevel": "JAVA_8",
-    "mixins": [
-        "AccessorMouse"
-    ],
     "client": [
+        "AccessorMouse",
         "MixinKeyboard",
-        "MixinMouse"
+        "MixinMouse",
+        "MixinPlayer"
     ],
     "injectors": {
         "defaultRequire": 1
