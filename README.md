@@ -15,7 +15,8 @@ versions to newer ones.
 # Downloads
 
 You can find downloads for Old Animations on either the [CurseForge page][curseforge] or through
-the [GitHub Releases page][releases]. Usually, releases will be made on GitHub slightly sooner than [CurseForge].
+the [GitHub Releases page][releases]. Usually, releases will be made on GitHub slightly sooner than
+[CurseForge][curseforge].
 
 ## Versioning Strategy
 
