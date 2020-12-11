@@ -1,10 +1,15 @@
 @file:JvmName("OldAnimations")
+
 package com.nekkan.oldanimations
 
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-const val OLD_ANIMATIONS_REPOSITORY = "https://github.com/nekkan/old-animations"
+// Use separated fields to a future usage of GitHubUpdateChecker.
+private const val GITHUB_BASE_URL = "https://github.com/"
+private const val OLD_ANIMATIONS_REPOSITORY_OWNER = "nekkan"
+private const val OLD_ANIMATIONS_REPOSITORY_ID = "old-animations"
+const val OLD_ANIMATIONS_REPOSITORY = "$GITHUB_BASE_URL/$OLD_ANIMATIONS_REPOSITORY_OWNER/$OLD_ANIMATIONS_REPOSITORY_ID"
 
 @get:JvmName("getLogger")
 val OldAnimations: Logger = LogManager.getFormatterLogger("com.nekkan.oldanimations.OldAnimations")
@@ -19,6 +24,5 @@ fun init() {
      */
     System.setProperty("kotlinx.coroutines.debug", "on")
 
-    OldAnimations.info("Old Animations is up-to-date! Latest version: 1.0-SNAPSHOT for 1.16.x $OLD_ANIMATIONS_REPOSITORY")
+    OldAnimations.info("[OldAnimations] The mod has been loaded successfully!")
 }
-
