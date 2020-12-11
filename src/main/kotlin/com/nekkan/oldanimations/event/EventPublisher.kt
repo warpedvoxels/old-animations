@@ -2,6 +2,6 @@ package com.nekkan.oldanimations.event
 
 interface EventPublisher {
 
-    suspend fun executeFor(event: Event)
+    suspend fun publish(event: Event)
 
 }

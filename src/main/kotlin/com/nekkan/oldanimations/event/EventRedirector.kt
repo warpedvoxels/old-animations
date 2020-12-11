@@ -13,7 +13,7 @@ class EventRedirector: SharedFlowBasedEventPublisher, SharedFlowBasedEventSubscr
     override val flow: SharedFlow<Event>
         get() = _flow
 
-    override suspend fun executeFor(event: Event) {
+    override suspend fun publish(event: Event) {
         return _flow.emit(event)
     }
 
