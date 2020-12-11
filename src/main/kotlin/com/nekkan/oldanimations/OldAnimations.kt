@@ -2,10 +2,12 @@
 
 package com.nekkan.oldanimations
 
+import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.event.EventRedirector
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
@@ -20,6 +22,10 @@ val OldAnimations: Logger = LogManager.getFormatterLogger("com.nekkan.oldanimati
 
 private val eventRedirector = EventRedirector()
 internal val oldAnimationsScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
+fun Event.redirect() = oldAnimationsScope.launch {
+    eventRedirector.publish(this@redirect)
+}
 
 /**
  * This code will be obviously updated later. This single-line `println` code will print when the Fabric mod start up.
