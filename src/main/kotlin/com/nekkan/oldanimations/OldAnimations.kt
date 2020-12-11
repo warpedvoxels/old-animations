@@ -26,7 +26,7 @@ val eventRedirector = EventRedirector()
 @JvmSynthetic
 val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
-inline fun Event.redirect() = coroutineScope.launch {
+fun Event.redirect() = coroutineScope.launch {
     eventRedirector.publish(this@redirect)
 }
 
