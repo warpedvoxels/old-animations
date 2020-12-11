@@ -20,4 +20,11 @@ public class MixinKeyboard {
         OldAnimations.redirect(event);
     }
 
+    @Inject(at = @At("INVOKE"), method = "onKey")
+    private void postProcessKey(long window, int keyCode, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
+        EventPublisher publisher = OldAnimations.getRedirector();
+        Event event = new KeyboardPressEvent(keyCode, scanCode, action, modifiers, publisher, callbackInfo);
+        OldAnimations.redirect(event);
+    }
+
 }
