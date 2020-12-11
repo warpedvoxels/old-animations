@@ -1,11 +1,9 @@
 package com.nekkan.oldanimations.settings
 
-interface Checkbox: Setting {
-
-    val isChecked: Boolean
-
-    val isCheckedByDefault: Boolean
-
-    val isLocked: Boolean
-
-}
+data class Checkbox(
+    override val name: String,
+    override val description: String,
+    val isCheckedByDefault: Boolean = false,
+    val isChecked: Boolean = isCheckedByDefault,
+    val isLocked: Boolean = false
+): Setting
