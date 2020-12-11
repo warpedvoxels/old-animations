@@ -18,4 +18,9 @@ sealed class Event {
      */
     abstract class Post: Event()
 
+    /**
+     * Execute after a return of a Mixin injection.
+     */
+    abstract class Return: Event()
+
 }
