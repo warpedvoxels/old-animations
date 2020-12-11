@@ -1,4 +1,4 @@
-<img src="assets/logo.png" align="right"/>
+<img src="assets/logo.png" align="right" height=200 width=200/>
 
 # old-animations
 
