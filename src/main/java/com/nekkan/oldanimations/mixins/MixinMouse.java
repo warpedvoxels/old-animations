@@ -25,7 +25,7 @@ public class MixinMouse {
             OldAnimations.redirect(new MouseEvent.Right(publisher, callbackInfo));
             return;
         }
-        if(accessor.isRightButtonClicked()) {
+        if(accessor.isMiddleButtonClicked()) {
             OldAnimations.redirect(new MouseEvent.Middle(publisher, callbackInfo));
         }
     }
