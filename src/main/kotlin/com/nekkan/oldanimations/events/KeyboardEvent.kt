@@ -2,6 +2,7 @@ package com.nekkan.oldanimations.events
 
 import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.event.EventPublisher
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 
 sealed class KeyboardEvent: Event.Pre() {
 
@@ -21,7 +22,8 @@ sealed class KeyboardEvent: Event.Pre() {
         override val scanCode: Int,
         override val action: Int,
         override val modifiers: Int,
-        override val publisher: EventPublisher
+        override val publisher: EventPublisher,
+        override val callbackInfo: CallbackInfo
     ): KeyboardEvent()
 
     /**
@@ -32,7 +34,8 @@ sealed class KeyboardEvent: Event.Pre() {
         override val scanCode: Int,
         override val action: Int,
         override val modifiers: Int,
-        override val publisher: EventPublisher
+        override val publisher: EventPublisher,
+        override val callbackInfo: CallbackInfo
     ): KeyboardEvent()
 
 }
