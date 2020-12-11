@@ -4,7 +4,7 @@ import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.event.EventPublisher
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 
-data class ToggleSneakingEvent(
+data class ToggleSneakEvent(
     val isSneaking: Boolean,
     override val publisher: EventPublisher,
     override val callbackInfo: CallbackInfo
