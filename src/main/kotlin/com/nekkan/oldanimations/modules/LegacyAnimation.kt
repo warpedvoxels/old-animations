@@ -1,8 +1,9 @@
 package com.nekkan.oldanimations.modules
 
+import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.settings.Identifier
 
-interface LegacyAnimation {
+interface LegacyAnimation<T: Event> {
 
     val identifier: Identifier
 
