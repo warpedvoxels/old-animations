@@ -8,7 +8,4 @@ interface LegacyAnimation {
 
     val isEnabled: Boolean
 
-    val isEnabledByDefault: Boolean
-        get() = false
-
 }
