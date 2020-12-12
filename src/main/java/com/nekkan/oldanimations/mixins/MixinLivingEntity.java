@@ -23,10 +23,6 @@ public class MixinLivingEntity {
     }
 
     // Backport of 1.7 eye height to newer versions.
-
-    /**
-     * @author ?
-     */
     @Overwrite
     public final float getEyeHeight(EntityPose pose, EntityDimensions dimensions) {
         switch(pose) {
