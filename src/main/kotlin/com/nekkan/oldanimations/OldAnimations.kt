@@ -4,12 +4,15 @@ package com.nekkan.oldanimations
 
 import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.event.EventRedirector
+import com.nekkan.oldanimations.modules.AnimationManager
+import com.nekkan.oldanimations.modules.LegacyAnimation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import java.util.concurrent.ConcurrentHashMap
 
 // Use separated fields to a future usage of GitHubUpdateChecker.
 private const val GITHUB_BASE_URL = "https://github.com/"
@@ -25,6 +28,14 @@ val eventRedirector = EventRedirector()
 
 @JvmSynthetic
 val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+internal val animationManager = AnimationManager(ConcurrentHashMap())
+
+fun <T: LegacyAnimation<*, R>, R: Any> getAnimationOrNull(javaClass: Class<T>): T? {
+    return animationManager
+        .collection
+        .values
+        .firstOrNull { javaClass.isInstance(it) } as? T?
+}
 
 fun Event.redirect() = coroutineScope.launch {
     eventRedirector.publish(this@redirect)
@@ -41,4 +52,13 @@ fun init() {
     System.setProperty("kotlinx.coroutines.debug", "on")
 
     OldAnimations.info("[OldAnimations] The mod has been loaded successfully!")
+    registerModules()
+}
+
+/**
+ * Add all modules to the module list.
+ */
+@OptIn(ExperimentalStdlibApi::class)
+private fun registerModules() = with(animationManager) {
+    // TODO
 }
