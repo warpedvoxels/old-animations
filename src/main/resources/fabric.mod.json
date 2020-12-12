@@ -4,12 +4,17 @@
     "version": "${version}",
     "name": "Old Animations",
     "description": "Fabric mod to restore Minecraft animations from legacy versions.",
-    "authors": ["nekkan"],
+    "authors": [
+        "nekkan"
+    ],
+    "icon": "assets/oldanimations/logo.png",
     "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/old-animations",
+        "issues": "https://github.com/nekkan/old-animations/issues",
         "sources": "https://github.com/nekkan/old-animations"
     },
     "license": "MIT",
-    "environment": "*",
+    "environment": "client",
     "entrypoints": {
         "main": [
             {
@@ -18,10 +23,15 @@
             }
         ]
     },
-    "mixins": ["oldanimations.mixins.json"],
+    "mixins": [
+        "oldanimations.mixins.json"
+    ],
     "depends": {
         "fabricloader": ">=0.8.7",
         "fabric-language-kotlin": ">=1.4.0",
         "minecraft": "1.16.x"
+    },
+    "custom": {
+        "modmenu:clientsideOnly": true
     }
 }
