@@ -6,6 +6,7 @@ import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.event.EventRedirector
 import com.nekkan.oldanimations.modules.AnimationManager
 import com.nekkan.oldanimations.modules.LegacyAnimation
+import com.nekkan.oldanimations.modules.LegacySneakAnimation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -30,11 +31,12 @@ val eventRedirector = EventRedirector()
 val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 internal val animationManager = AnimationManager(ConcurrentHashMap())
 
-fun <T: LegacyAnimation<*, R>, R: Any> getAnimationOrNull(javaClass: Class<T>): T? {
-    return animationManager
-        .collection
-        .values
-        .firstOrNull { javaClass.isInstance(it) } as? T?
+fun <T: LegacyAnimation<*, R>, R: Any> isEnabled(javaClass: Class<T>): Boolean {
+    return animationManager.collection.values.firstOrNull { javaClass.isInstance(it) } != null
+}
+
+fun v() {
+    isEnabled(LegacySneakAnimation::class.java)
 }
 
 fun Event.redirect() = coroutineScope.launch {
@@ -60,5 +62,5 @@ fun init() {
  */
 @OptIn(ExperimentalStdlibApi::class)
 private fun registerModules() = with(animationManager) {
-    // TODO
+    // todo
 }
