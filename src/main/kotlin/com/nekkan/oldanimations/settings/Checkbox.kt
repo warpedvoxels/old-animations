@@ -10,4 +10,4 @@ data class Checkbox(
     val isLocked: Boolean = false
 ): Setting
 
-inline fun LegacyAnimation<*>.EnablingCheckbox() = Checkbox(identifier.name, identifier.description)
+inline fun LegacyAnimation<*, *>.EnablingCheckbox() = Checkbox(identifier.name, identifier.description)

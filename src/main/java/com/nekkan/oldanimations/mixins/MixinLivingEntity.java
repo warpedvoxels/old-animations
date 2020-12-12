@@ -17,13 +17,9 @@ public class MixinLivingEntity {
     private static final float SNEAKING_HEIGHT = 1.27f;
     private static final float SLEEPING_HEIGHT = 0.2f;
     private static final float SPIN_ATTACK_HEIGHT = 0.4f;
-    private Boolean hasLegacyAnimation = null;
 
-    private boolean getLegacyAnimation() {
-        if(hasLegacyAnimation == null) {
-            hasLegacyAnimation = OldAnimations.isEnabled(LegacySneakAnimation.class);
-        }
-        return hasLegacyAnimation;
+    private boolean isLegacySneakingEnabled() {
+        return OldAnimations.isEnabled(LegacySneakAnimation.class);
     }
 
     // Backport of 1.7 eye height to newer versions.
@@ -41,9 +37,9 @@ public class MixinLivingEntity {
             case SLEEPING:
                 return SLEEPING_HEIGHT;
             case CROUCHING:
-                return getLegacyAnimation() ? LEGACY_SNEAKING_HEIGHT : SNEAKING_HEIGHT;
+                return isLegacySneakingEnabled() ? LEGACY_SNEAKING_HEIGHT : SNEAKING_HEIGHT;
             default:
-                return getLegacyAnimation() ? LEGACY_DEFAULT_EYE_HEIGHT : DEFAULT_EYE_HEIGHT;
+                return isLegacySneakingEnabled() ? LEGACY_DEFAULT_EYE_HEIGHT : DEFAULT_EYE_HEIGHT;
         }
     }
 
