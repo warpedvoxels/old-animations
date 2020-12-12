@@ -2,13 +2,16 @@
 
 package com.nekkan.oldanimations.modules
 
+import com.nekkan.oldanimations.coroutineScope
 import com.nekkan.oldanimations.event.Event
+import com.nekkan.oldanimations.eventRedirector
+import com.nekkan.oldanimations.with
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.full.createType
 import kotlin.reflect.typeOf
 
-class AnimationManager(private val collection: MutableMap<KType, LegacyAnimation<*>>) {
+internal class AnimationManager(private val collection: MutableMap<KType, LegacyAnimation<*>>) {
 
     private fun <T: Event> getOrNull(type: KType): LegacyAnimation<T>? {
         return collection[type] as? LegacyAnimation<T>?
@@ -18,18 +21,25 @@ class AnimationManager(private val collection: MutableMap<KType, LegacyAnimation
         return getOrNull(type) ?: error("Invalid animation or type does not match.")
     }
 
-    operator fun set(type: KType, animation: LegacyAnimation<*>) {
+    inline operator fun <reified T: Event> set(type: KType, animation: LegacyAnimation<T>) {
         collection[type] = animation
+        redirect(type, animation)
     }
 
 }
 
-inline fun <T: Event> AnimationManager.get(kClass: KClass<T>) = get<T>(kClass.createType())
+private inline fun <reified T: Event> redirect(type: KType, animation: LegacyAnimation<T>) {
+    eventRedirector.with<T>(coroutineScope) {
+        animation.update(it)
+    }
+}
+
+internal inline fun <T: Event> AnimationManager.get(kClass: KClass<T>) = get<T>(kClass.createType())
 
 @OptIn(ExperimentalStdlibApi::class)
-inline fun <reified T: Event> AnimationManager.get() = get<T>(typeOf<T>())
+internal inline fun <reified T: Event> AnimationManager.get() = get<T>(typeOf<T>())
 
 @OptIn(ExperimentalStdlibApi::class)
-inline fun <reified T: Event> AnimationManager.set(animation: LegacyAnimation<T>) {
+internal inline fun <reified T: Event> AnimationManager.set(animation: LegacyAnimation<T>) {
     return set(typeOf<T>(), animation)
 }
