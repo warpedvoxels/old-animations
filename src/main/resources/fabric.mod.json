@@ -21,7 +21,6 @@
     "mixins": ["oldanimations.mixins.json"],
     "depends": {
         "fabricloader": ">=0.8.7",
-        "fabric": "*",
         "fabric-language-kotlin": ">=1.4.0",
         "minecraft": "1.16.x"
     }

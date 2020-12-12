@@ -25,7 +25,6 @@ repositories {
 dependencies {
     minecraft("com.mojang:minecraft:${FabricProperties.MINECRAFT_VERSION}")
     mappings("net.fabricmc:yarn:${FabricProperties.YARN_MAPPINGS_VERSION}:v2")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${FabricProperties.FABRIC_VERSION}")
     modImplementation("net.fabricmc:fabric-loader:${FabricProperties.FABRIC_LOADER_VERSION}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${KotlinProperties.FABRIC_KOTLIN_VERSION}")
     implementation(DependencyList.COROUTINES)       // Will be removed when Fabric Kotlin update to 1.4.21.
