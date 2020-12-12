@@ -5,6 +5,6 @@ data class Identifier(
     override val description: String
 ): Setting
 
-inline fun <reified T: Any> T.Identifier(description: String) = Identifier(
+inline fun Any.Identifier(description: String) = Identifier(
     this::class.simpleName!!, description
 )
