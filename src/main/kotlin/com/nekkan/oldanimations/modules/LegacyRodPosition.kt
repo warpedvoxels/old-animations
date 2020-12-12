@@ -4,7 +4,7 @@ import com.nekkan.oldanimations.settings.EnablingCheckbox
 import com.nekkan.oldanimations.settings.Identifier
 import com.nekkan.oldanimations.settings.ScreenSetting
 
-class OldRodPosition: LegacyAnimation {
+class LegacyRodPosition: LegacyAnimation {
 
     override val identifier = Identifier("rodposition", "Backport the rod position from 1.7.x version to newer ones.")
 
