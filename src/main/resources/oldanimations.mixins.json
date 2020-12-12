@@ -7,6 +7,7 @@
         "AccessorMouse",
         "MixinEntity",
         "MixinKeyboard",
+        "MixinLivingEntity",
         "MixinMouse",
         "MixinPlayer"
     ],
