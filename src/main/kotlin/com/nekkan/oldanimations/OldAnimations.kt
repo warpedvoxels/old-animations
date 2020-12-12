@@ -32,12 +32,8 @@ val eventRedirector = EventRedirector()
 val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 internal val animationManager = AnimationManager(ConcurrentHashMap())
 
-fun <T: LegacyAnimation<*, R>, R: Any> isEnabled(javaClass: Class<T>): Boolean {
+fun <T: LegacyAnimation> isEnabled(javaClass: Class<T>): Boolean {
     return animationManager.collection.values.firstOrNull { javaClass.isInstance(it) } != null
-}
-
-fun v() {
-    isEnabled(LegacySneakAnimation::class.java)
 }
 
 fun Event.redirect() = coroutineScope.launch {
