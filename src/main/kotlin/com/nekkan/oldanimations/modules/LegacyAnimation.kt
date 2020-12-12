@@ -10,7 +10,8 @@ interface LegacyAnimation<T: Event, R: Any> {
 
     val isEnabled: Checkbox
 
-    fun disable() { /* no-op */
+    fun disable() {
+        /* no-op */
     }
 
     fun execute(event: T): R
