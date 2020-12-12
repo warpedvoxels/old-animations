@@ -15,11 +15,11 @@ internal class AnimationManager(private val _collection: MutableMap<KType, Legac
 
     val collection: Map<KType, LegacyAnimation<*, *>> get() = _collection
 
-    private fun <T: Event> getOrNull(type: KType): LegacyAnimation<T, Any>? {
-        return _collection[type] as? LegacyAnimation<T, Any>?
+    private fun <T: Event, R: Any> getOrNull(type: KType): LegacyAnimation<T, R>? {
+        return _collection[type] as? LegacyAnimation<T, R>?
     }
 
-    operator fun <T: Event> get(type: KType): LegacyAnimation<T, Any> {
+    operator fun <T: Event, R: Any> get(type: KType): LegacyAnimation<T, R> {
         return getOrNull(type) ?: error("Invalid animation or type does not match.")
     }
 
@@ -36,10 +36,10 @@ private inline fun <reified T: Event> redirect(type: KType, animation: LegacyAni
     }
 }
 
-internal inline fun <T: Event> AnimationManager.get(kClass: KClass<T>) = get<T>(kClass.createType())
+internal inline fun <T: Event, R: Any> AnimationManager.get(kClass: KClass<T>) = get<T, R>(kClass.createType())
 
 @OptIn(ExperimentalStdlibApi::class)
-internal inline fun <reified T: Event> AnimationManager.get() = get<T>(typeOf<T>())
+internal inline fun <reified T: Event, R: Any> AnimationManager.get() = get<T, R>(typeOf<T>())
 
 @OptIn(ExperimentalStdlibApi::class)
 internal inline fun <reified T: Event> AnimationManager.set(animation: LegacyAnimation<T, Any>) {
