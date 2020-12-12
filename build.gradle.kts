@@ -1,5 +1,5 @@
-
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.nekkan.oldanimations.CompilerArgs
 import com.nekkan.oldanimations.DependencyList
 import com.nekkan.oldanimations.FabricProperties
 import com.nekkan.oldanimations.KotlinProperties
@@ -41,7 +41,10 @@ tasks.withType<ShadowJar> {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        freeCompilerArgs = CompilerArgs.toList()
+        jvmTarget = "1.8"
+    }
 }
 
 tasks.processResources {
