@@ -7,6 +7,7 @@ import com.nekkan.oldanimations.event.EventRedirector
 import com.nekkan.oldanimations.modules.AnimationManager
 import com.nekkan.oldanimations.modules.LegacyAnimation
 import com.nekkan.oldanimations.modules.LegacySneakAnimation
+import com.nekkan.oldanimations.modules.set
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -54,7 +55,12 @@ fun init() {
     System.setProperty("kotlinx.coroutines.debug", "on")
 
     OldAnimations.info("[OldAnimations] The mod has been loaded successfully!")
-    registerModules()
+    loadStep("1/2", "Loading modules...") { registerModules() }
+}
+
+private inline fun loadStep(step: String, name: String, callback: () -> Unit) {
+    OldAnimations.info("[OldAnimations] $step -> $name")
+    callback()
 }
 
 /**
@@ -62,5 +68,5 @@ fun init() {
  */
 @OptIn(ExperimentalStdlibApi::class)
 private fun registerModules() = with(animationManager) {
-    // todo
+    set(LegacySneakAnimation())
 }
