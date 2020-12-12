@@ -42,6 +42,6 @@ internal inline fun <T: Event, R: Any> AnimationManager.get(kClass: KClass<T>) =
 internal inline fun <reified T: Event, R: Any> AnimationManager.get() = get<T, R>(typeOf<T>())
 
 @OptIn(ExperimentalStdlibApi::class)
-internal inline fun <reified T: Event> AnimationManager.set(animation: LegacyAnimation<T, Any>) {
-    return set(typeOf<T>(), animation)
+internal inline fun <reified T: Event> AnimationManager.set(animation: LegacyAnimation<T, out Any>) {
+    return set(typeOf<T>(), animation as LegacyAnimation<T, Any>)
 }
