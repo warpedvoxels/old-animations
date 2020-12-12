@@ -4,7 +4,7 @@ import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.settings.Checkbox
 import com.nekkan.oldanimations.settings.Identifier
 
-interface LegacyAnimation<T: Event> {
+interface LegacyAnimation<T: Event, R: Any> {
 
     val identifier: Identifier
 
@@ -13,6 +13,6 @@ interface LegacyAnimation<T: Event> {
     fun disable() { /* no-op */
     }
 
-    fun update(event: T)
+    fun execute(event: T): R
 
 }
