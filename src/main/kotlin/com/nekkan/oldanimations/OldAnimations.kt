@@ -62,6 +62,6 @@ private inline fun loadStep(step: String, name: String, callback: () -> Unit) {
 @OptIn(ExperimentalStdlibApi::class)
 private fun registerModules() = with(animationManager) {
     set(LegacySneakAnimation())
-    // set(LegacyBowPosition())
-    // set(LegacyRodPosition())
+    set(LegacyBowPosition())
+    set(LegacyRodPosition())
 }
