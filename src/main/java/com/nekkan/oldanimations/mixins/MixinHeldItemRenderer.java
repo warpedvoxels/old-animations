@@ -39,7 +39,7 @@ public class MixinHeldItemRenderer {
         int light,
         CallbackInfo callbackInfo
     ) {
-        if((Items.CROSSBOW.equals(item.getItem()) || Items.BOW.equals(item.getItem())) || OldAnimations.isEnabled(LegacyBowPosition.class)) {
+        if(Items.BOW.equals(item.getItem()) && OldAnimations.isEnabled(LegacyBowPosition.class)) {
             matrices.translate(0.0f, 0.05f, 0.04f);
             matrices.scale(0.93f, 1.0f, 1.0f);
             return;
