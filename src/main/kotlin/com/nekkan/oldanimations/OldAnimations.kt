@@ -9,8 +9,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry
+import net.fabricmc.fabric.api.client.model.ModelVariantProvider
+import net.minecraft.client.render.model.json.JsonUnbakedModel
+import net.minecraft.item.Items
+import net.minecraft.item.SwordItem
+import net.minecraft.util.Identifier
+import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import java.io.InputStreamReader
 import java.util.concurrent.ConcurrentHashMap
 
 // Use separated fields to a future usage of GitHubUpdateChecker.
@@ -49,6 +57,7 @@ fun init() {
 
     OldAnimations.info("[OldAnimations] The mod has been loaded successfully!")
     loadStep("1/2", "Loading modules...") { registerModules() }
+    loadStep("2/2", "Register identifiers...") { registerIdentifiers() }
 }
 
 private inline fun loadStep(step: String, name: String, callback: () -> Unit) {
@@ -61,7 +70,36 @@ private inline fun loadStep(step: String, name: String, callback: () -> Unit) {
  */
 @OptIn(ExperimentalStdlibApi::class)
 private fun registerModules() = with(animationManager) {
+    set(SwordBlockingAnimation())
     set(LegacySneakAnimation())
     set(LegacyBowPosition())
     set(LegacyRodPosition())
+}
+
+/**
+ * Add some identifiers to the Fabric item identifier registry.
+ */
+private fun registerIdentifiers() {
+    // Identifier used to register the blocking models to apply the sword blocking animation.
+    // This option will be only disabled when game restarts.
+    if(isEnabled(SwordBlockingAnimation::class.java)) {
+        ModelLoadingRegistry.INSTANCE.registerVariantProvider { manager ->
+            ModelVariantProvider { modelId, _ ->
+                when(val id = Identifier(modelId.namespace, modelId.path)) {
+                    Registry.ITEM.getId(Items.SHIELD) -> {
+                        val resource = manager.getResource(Identifier("oldanimations", "models/new_shield.json"))
+                        val reader = InputStreamReader(resource.inputStream)
+                        JsonUnbakedModel.deserialize(reader)
+                    }
+                    else -> null
+                }
+            }
+        }
+        val identifier = MinecraftIdentifier("blocking")
+        Registry.ITEM.forEach {
+            if(it is SwordItem) {
+                SwordBlockingAnimation.registerFor(it, identifier)
+            }
+        }
+    }
 }
