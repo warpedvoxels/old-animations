@@ -4,10 +4,7 @@ package com.nekkan.oldanimations
 
 import com.nekkan.oldanimations.event.Event
 import com.nekkan.oldanimations.event.EventRedirector
-import com.nekkan.oldanimations.modules.AnimationManager
-import com.nekkan.oldanimations.modules.LegacyAnimation
-import com.nekkan.oldanimations.modules.LegacySneakAnimation
-import com.nekkan.oldanimations.modules.set
+import com.nekkan.oldanimations.modules.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -65,4 +62,6 @@ private inline fun loadStep(step: String, name: String, callback: () -> Unit) {
 @OptIn(ExperimentalStdlibApi::class)
 private fun registerModules() = with(animationManager) {
     set(LegacySneakAnimation())
+    // set(LegacyBowPosition())
+    // set(LegacyRodPosition())
 }

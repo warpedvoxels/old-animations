@@ -28,8 +28,6 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${FabricProperties.FABRIC_VERSION}")
     modImplementation("net.fabricmc:fabric-loader:${FabricProperties.FABRIC_LOADER_VERSION}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${KotlinProperties.FABRIC_KOTLIN_VERSION}")
-    implementation(DependencyList.COROUTINES)       // Will be removed when Fabric Kotlin update to 1.4.21.
-    implementation(DependencyList.COROUTINES_JDK8)  // Will be removed when Fabric Kotlin update to 1.4.21.
     compileOnly(DependencyList.LOG4J_CORE)
     compileOnly(DependencyList.LOG4J_API)
 }
