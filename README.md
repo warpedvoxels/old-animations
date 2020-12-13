@@ -13,6 +13,7 @@ versions to newer ones.
 * [Compiling](#compiling)
   * [Prerequisites](#prerequisites)
   * [Getting Started](#getting-started)
+* [Credits](#credits)
 * [License](#license)
 
 # Downloads
@@ -67,6 +68,10 @@ Navigate to the directory you've cloned this repository and build with Gradle us
 has finished preparing the environment for you and building everything, you can find the `.jar` artifact were is located
 at `./build/libs` along the `*-dev.jar` artifact.
 
+# Credits
+
+* [Sword Blocking][sword_blocking] (models-only) by TeamMidnightDust
+
 # License
 
 The Old Animations Project is licensed under the **MIT** license. For more information, please check out the [license]
@@ -83,5 +88,7 @@ file.
 [license]: https://github.com/nekkan/old-animations/blob/main/LICENSE.md
 
 [curseforge]: https://www.curseforge.com/minecraft/mc-mods/old-animations
+
+[sword_blocking]: https://github.com/TeamMidnightDust/SwordBlocking
 
 [semantic_versioning]: https://semver.org
