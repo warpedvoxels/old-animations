@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(LivingEntity.class)
 public class MixinLivingEntity {
 
-    private static final float LEGACY_DEFAULT_EYE_HEIGHT = 1.608f;
     private static final float DEFAULT_EYE_HEIGHT = 1.62f;
     private static final float LEGACY_SNEAKING_HEIGHT = 1.52f;
     private static final float SNEAKING_HEIGHT = 1.27f;
@@ -35,7 +34,7 @@ public class MixinLivingEntity {
             case CROUCHING:
                 return isLegacySneakingEnabled() ? LEGACY_SNEAKING_HEIGHT : SNEAKING_HEIGHT;
             default:
-                return isLegacySneakingEnabled() ? LEGACY_DEFAULT_EYE_HEIGHT : DEFAULT_EYE_HEIGHT;
+                return DEFAULT_EYE_HEIGHT;
         }
     }
 
