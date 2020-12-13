@@ -6,6 +6,7 @@
     "client": [
         "AccessorMouse",
         "MixinEntity",
+        "MixinHeldItemRenderer",
         "MixinKeyboard",
         "MixinLivingEntity",
         "MixinMouse",
