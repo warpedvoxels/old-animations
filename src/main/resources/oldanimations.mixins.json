@@ -10,7 +10,8 @@
         "MixinKeyboard",
         "MixinLivingEntity",
         "MixinMouse",
-        "MixinPlayer"
+        "MixinPlayer",
+        "MixinPlayerEntityRenderer"
     ],
     "injectors": {
         "defaultRequire": 1
