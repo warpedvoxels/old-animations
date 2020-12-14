@@ -9,6 +9,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig
+import me.sargunvohra.mcmods.autoconfig1u.serializer.Toml4jConfigSerializer
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry
 import net.fabricmc.fabric.api.client.model.ModelVariantProvider
 import net.minecraft.client.render.model.json.JsonUnbakedModel
@@ -19,7 +21,6 @@ import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import java.io.InputStreamReader
-import java.util.concurrent.ConcurrentHashMap
 
 // Use separated fields to a future usage of GitHubUpdateChecker.
 private const val GITHUB_BASE_URL = "https://github.com/"
@@ -35,10 +36,16 @@ val eventRedirector = EventRedirector()
 
 @JvmSynthetic
 val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-internal val animationManager = AnimationManager(ConcurrentHashMap())
 
 fun <T: LegacyAnimation> isEnabled(javaClass: Class<T>): Boolean {
-    return animationManager.collection.values.firstOrNull { javaClass.isInstance(it) } != null
+    val config = AutoConfig.getConfigHolder(OldAnimationsConfig::class.java).config
+    return when {
+        javaClass.isAssignableFrom(SwordBlockingAnimation::class.java) -> config.enableSwordBlockingAnimation
+        javaClass.isAssignableFrom(LegacySneakAnimation::class.java) -> config.enableLegacySneakAnimation
+        javaClass.isAssignableFrom(LegacyRodPosition::class.java) -> config.enableLegacyRodPosition
+        javaClass.isAssignableFrom(LegacyBowPosition::class.java) -> config.enableLegacyBowPosition
+        else -> error("Animation not registered.")
+    }
 }
 
 fun Event.redirect() = coroutineScope.launch {
@@ -56,7 +63,7 @@ fun init() {
     System.setProperty("kotlinx.coroutines.debug", "on")
 
     OldAnimations.info("[OldAnimations] The mod has been loaded successfully!")
-    loadStep("1/2", "Loading modules...") { registerModules() }
+    loadStep("1/2", "Loading configuration...") { registerConfig() }
     loadStep("2/2", "Register identifiers...") { registerIdentifiers() }
 }
 
@@ -66,14 +73,10 @@ private inline fun loadStep(step: String, name: String, callback: () -> Unit) {
 }
 
 /**
- * Add all modules to the module list.
+ * Register a TOML configuration using AutoConfig.
  */
-@OptIn(ExperimentalStdlibApi::class)
-private fun registerModules() = with(animationManager) {
-    set(SwordBlockingAnimation())
-    set(LegacySneakAnimation())
-    set(LegacyBowPosition())
-    set(LegacyRodPosition())
+private fun registerConfig() {
+    AutoConfig.register(OldAnimationsConfig::class.java) { config, `class` -> Toml4jConfigSerializer(config, `class`) }
 }
 
 /**
@@ -85,7 +88,7 @@ private fun registerIdentifiers() {
     if(isEnabled(SwordBlockingAnimation::class.java)) {
         ModelLoadingRegistry.INSTANCE.registerVariantProvider { manager ->
             ModelVariantProvider { modelId, _ ->
-                when(val id = Identifier(modelId.namespace, modelId.path)) {
+                when(Identifier(modelId.namespace, modelId.path)) {
                     Registry.ITEM.getId(Items.SHIELD) -> {
                         val resource = manager.getResource(Identifier("oldanimations", "models/new_shield.json"))
                         val reader = InputStreamReader(resource.inputStream)
@@ -95,7 +98,7 @@ private fun registerIdentifiers() {
                 }
             }
         }
-        val identifier = MinecraftIdentifier("blocking")
+        val identifier = Identifier("blocking")
         Registry.ITEM.forEach {
             if(it is SwordItem) {
                 SwordBlockingAnimation.registerFor(it, identifier)
