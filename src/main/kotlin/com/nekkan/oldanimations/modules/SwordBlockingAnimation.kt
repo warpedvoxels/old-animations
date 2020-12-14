@@ -7,11 +7,9 @@ import net.minecraft.util.Identifier
 
 object SwordBlockingAnimation: LegacyAnimation {
 
-    companion object {
-        fun registerFor(item: Item, identifier: Identifier) {
-            FabricModelPredicateProviderRegistry.register(item, identifier) { _, _, entity ->
-                if(entity != null && entity.offHandStack.item == Items.SHIELD && entity.isUsingItem) 1f else 0f
-            }
+    fun registerFor(item: Item, identifier: Identifier) {
+        FabricModelPredicateProviderRegistry.register(item, identifier) { _, _, entity ->
+            if(entity != null && entity.offHandStack.item == Items.SHIELD && entity.isUsingItem) 1f else 0f
         }
     }
 
