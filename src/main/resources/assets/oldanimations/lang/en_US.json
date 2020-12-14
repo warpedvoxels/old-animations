@@ -1,0 +1,7 @@
+{
+    "text.autoconfig.oldanimations.title": "Old Animations",
+    "text.autoconfig.oldanimations.option.enableLegacyBowPosition": "Enable Legacy Bow Position (1.7.x)",
+    "text.autoconfig.oldanimations.option.enableLegacyRodPosition": "Enable Legacy Rod Position (1.7.x)",
+    "text.autoconfig.oldanimations.option.enableLegacySneakAnimation": "Enable Legacy Sneak Position (1.7.x)",
+    "text.autoconfig.oldanimations.option.enableSwordBlockingAnimation": "Enable Sword Blocking Animation (before 1.9.x)"
+}
