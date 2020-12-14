@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version com.nekkan.oldanimations.KotlinProperties.VERSION
     id("fabric-loom") version com.nekkan.oldanimations.FabricProperties.LOOM_VERSION
-    id("com.github.johnrengelman.shadow") version com.nekkan.oldanimations.DependencyList.SHADOW
+    id("com.github.johnrengelman.shadow") version com.nekkan.oldanimations.DependencyList.SHADOW_VERSION
     java
 }
 
@@ -28,6 +28,15 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${FabricProperties.FABRIC_VERSION}")
     modImplementation("net.fabricmc:fabric-loader:${FabricProperties.FABRIC_LOADER_VERSION}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${KotlinProperties.FABRIC_KOTLIN_VERSION}")
+    modImplementation(DependencyList.MOD_MENU)
+    modApi(DependencyList.CLOTH_CONFIG) {
+        exclude("net.fabricmc.fabric-api")
+    }
+    include(DependencyList.CLOTH_CONFIG)
+    modApi(DependencyList.AUTO_CONFIG) {
+        exclude("net.fabricmc.fabric-api")
+    }
+    include(DependencyList.AUTO_CONFIG)
     compileOnly(DependencyList.LOG4J_CORE)
     compileOnly(DependencyList.LOG4J_API)
 }
