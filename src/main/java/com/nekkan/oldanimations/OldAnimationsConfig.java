@@ -17,7 +17,7 @@ public class OldAnimationsConfig implements ConfigData {
     @Comment("Remove the smooth sneaking animation from newer versions.")
     boolean enableLegacySneakAnimation = true;
 
-    @Comment("Restores the sword blocking animation when using a shield.")
+    @Comment("Restore the sword blocking animation when using a shield.")
     @ConfigEntry.Gui.RequiresRestart
     boolean enableSwordBlockingAnimation = true;
 

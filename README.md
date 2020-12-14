@@ -7,6 +7,7 @@ versions to newer ones.
 
 # Table of contents
 
+* [Animations](#animations)
 * [Downloads](#downloads)
 * [Contributing][contributing]
 * [Versioning Strategy](#versioning-strategy)
@@ -15,6 +16,17 @@ versions to newer ones.
   * [Getting Started](#getting-started)
 * [Credits](#credits)
 * [License](#license)
+
+# Animations
+
+* [x] Legacy Sneaking
+* [x] Legacy Bow Position and Scaling
+* [x] Legacy Rod Position and Scaling
+* [x] Sword Blocking & blockhitting
+  * Blockhitting animation depends on swing speed.
+* [ ] Legacy Tablist
+* [ ] Swing at ground while eating
+* [ ] Remove armor flashing when player takes damage
 
 # Downloads
 
