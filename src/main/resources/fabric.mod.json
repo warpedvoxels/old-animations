@@ -21,6 +21,9 @@
                 "adapter": "kotlin",
                 "value": "com.nekkan.oldanimations.OldAnimations::init"
             }
+        ],
+        "modmenu": [
+            "com.nekkan.oldanimations.ModMenuIntegration"
         ]
     },
     "mixins": [
@@ -30,8 +33,5 @@
         "fabricloader": ">=0.8.7",
         "fabric-language-kotlin": ">=1.4.21",
         "minecraft": "1.16.x"
-    },
-    "custom": {
-        "modmenu:clientsideOnly": true
     }
 }
