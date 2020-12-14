@@ -1,6 +1,6 @@
 <img src="assets/logo.png" align="right" height=200 width=200/>
 
-# old-animations
+# Old Animations
 
 Old Animations is a free and open-source mod targeting the client-side of Minecraft that backport animations from legacy
 versions to newer ones.
