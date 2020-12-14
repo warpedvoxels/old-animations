@@ -26,7 +26,7 @@ versions to newer ones.
   * Blockhitting animation depends on swing speed.
 * [ ] Legacy player list (no heads, no footer and no header)
 * [ ] Swing at ground while eating
-* [ ] Remove armor flashing when player takes damage
+* [ ] Armor flashing when player takes damage
 
 # Downloads
 
