@@ -34,5 +34,3 @@ suspend inline fun URL.get() = withContext(Dispatchers.IO) {
 }
 
 inline fun CommandContext<ServerCommandSource>.feedback(text: String) = source.sendFeedback(LiteralText(text), false)
-
-typealias MinecraftIdentifier = net.minecraft.util.Identifier
