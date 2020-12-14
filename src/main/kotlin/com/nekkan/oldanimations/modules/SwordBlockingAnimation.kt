@@ -5,7 +5,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.util.Identifier
 
-class SwordBlockingAnimation: LegacyAnimation {
+object SwordBlockingAnimation: LegacyAnimation {
 
     companion object {
         fun registerFor(item: Item, identifier: Identifier) {

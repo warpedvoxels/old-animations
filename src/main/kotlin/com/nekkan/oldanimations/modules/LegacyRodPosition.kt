@@ -1,3 +1,3 @@
 package com.nekkan.oldanimations.modules
 
-class LegacyRodPosition: LegacyAnimation
+object LegacyRodPosition: LegacyAnimation

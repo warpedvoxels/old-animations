@@ -1,3 +1,3 @@
 package com.nekkan.oldanimations.modules
 
-class LegacySneakAnimation: LegacyAnimation
+object LegacySneakAnimation: LegacyAnimation

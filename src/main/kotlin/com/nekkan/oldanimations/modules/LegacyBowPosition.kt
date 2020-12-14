@@ -1,3 +1,3 @@
 package com.nekkan.oldanimations.modules
 
-class LegacyBowPosition: LegacyAnimation
+object LegacyBowPosition: LegacyAnimation
