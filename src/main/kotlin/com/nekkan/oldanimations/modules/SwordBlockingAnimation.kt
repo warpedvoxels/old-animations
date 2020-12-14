@@ -7,9 +7,6 @@ import net.minecraft.util.Identifier
 
 class SwordBlockingAnimation: LegacyAnimation {
 
-    //override val identifier: Identifier
-    //    get() = Identifier("swordblocking", "")
-
     companion object {
         fun registerFor(item: Item, identifier: Identifier) {
             FabricModelPredicateProviderRegistry.register(item, identifier) { _, _, entity ->
