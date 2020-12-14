@@ -19,12 +19,12 @@ versions to newer ones.
 
 # Animations
 
-* [x] Legacy Sneaking
+* [x] Legacy Sneaking (1.7.x)
 * [x] Legacy Bow Position and Scaling
 * [x] Legacy Rod Position and Scaling
 * [x] Sword Blocking & blockhitting
   * Blockhitting animation depends on swing speed.
-* [ ] Legacy Tablist
+* [ ] Legacy player list (no heads, no footer and no header)
 * [ ] Swing at ground while eating
 * [ ] Remove armor flashing when player takes damage
 
