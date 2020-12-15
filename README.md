@@ -23,7 +23,6 @@ versions to newer ones.
 * [x] Legacy Bow Position and Scaling
 * [x] Legacy Rod Position and Scaling
 * [x] Sword Blocking & blockhitting
-  * Blockhitting animation depends on swing speed.
 * [x] Legacy player list (no footer and no header)
 * [ ] Swing at ground while eating
 * [ ] Armor flashing when player takes damage
