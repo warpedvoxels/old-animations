@@ -4,13 +4,8 @@
     "package": "com.nekkan.oldanimations.mixins",
     "compatibilityLevel": "JAVA_8",
     "client": [
-        "AccessorMouse",
-        "MixinEntity",
         "MixinHeldItemRenderer",
-        "MixinKeyboard",
         "MixinLivingEntity",
-        "MixinMouse",
-        "MixinPlayer",
         "MixinPlayerEntityRenderer",
         "MixinPlayerListHud"
     ],
