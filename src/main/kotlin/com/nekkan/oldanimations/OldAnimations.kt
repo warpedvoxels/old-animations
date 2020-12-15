@@ -44,6 +44,7 @@ fun <T: LegacyAnimation> isEnabled(javaClass: Class<T>): Boolean {
         javaClass.isAssignableFrom(LegacySneakAnimation::class.java) -> config.enableLegacySneakAnimation
         javaClass.isAssignableFrom(LegacyRodPosition::class.java) -> config.enableLegacyRodPosition
         javaClass.isAssignableFrom(LegacyBowPosition::class.java) -> config.enableLegacyBowPosition
+        javaClass.isAssignableFrom(LegacyPlayerList::class.java) -> config.enableLegacyPlayerList
         else -> error("Animation not registered.")
     }
 }

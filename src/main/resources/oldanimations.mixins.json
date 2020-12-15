@@ -11,7 +11,8 @@
         "MixinLivingEntity",
         "MixinMouse",
         "MixinPlayer",
-        "MixinPlayerEntityRenderer"
+        "MixinPlayerEntityRenderer",
+        "MixinPlayerListHud"
     ],
     "injectors": {
         "defaultRequire": 1
