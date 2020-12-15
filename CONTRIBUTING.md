@@ -49,7 +49,7 @@ Start reading our code, and you will get the hang of it. We optimize for readabi
 6. File names should follow **C**amel**C**ase if there is a class or interface inside them, otherwise you can follow
    the **c**amel**C**ase pattern.
 
-7. No parenthesis before `if`, `when`, `try`, `catch` and other statements.
+7. No space before `if`, `when`, `try`, `catch` and other statements.
 
 ## Setting up environment
 
