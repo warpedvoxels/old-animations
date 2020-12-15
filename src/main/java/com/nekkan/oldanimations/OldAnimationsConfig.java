@@ -21,4 +21,7 @@ public class OldAnimationsConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     boolean enableSwordBlockingAnimation = true;
 
+    @Comment("Restore the legacy player list (no footer and no header).")
+    boolean enableLegacyPlayerList = false;
+
 }
