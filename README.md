@@ -2,7 +2,7 @@
 
 # Old Animations
 
-Old Animations is a free and open-source mod targeting the client-side of Minecraft that backport animations from legacy
+Old Animations is a free and open-source mod targeting the client-side of Minecraft to backport animations from legacy
 versions to newer ones.
 
 # Table of contents
@@ -24,7 +24,7 @@ versions to newer ones.
 * [x] Legacy Rod Position and Scaling
 * [x] Sword Blocking & blockhitting
   * Blockhitting animation depends on swing speed.
-* [ ] Legacy player list (no heads, no footer and no header)
+* [x] Legacy player list (no footer and no header)
 * [ ] Swing at ground while eating
 * [ ] Armor flashing when player takes damage
 
