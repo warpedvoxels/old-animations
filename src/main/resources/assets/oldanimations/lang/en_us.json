@@ -3,6 +3,7 @@
     "text.autoconfig.oldanimations.option.enableLegacyBowPosition": "Enable Legacy Bow Position (1.7.x)",
     "text.autoconfig.oldanimations.option.enableLegacyRodPosition": "Enable Legacy Rod Position (1.7.x)",
     "text.autoconfig.oldanimations.option.enableLegacySneakAnimation": "Enable Legacy Sneak Position (1.7.x)",
-    "text.autoconfig.oldanimations.option.enableSwordBlockingAnimation": "Enable Sword Blocking Animation (before 1.9.x)",
+    "text.autoconfig.oldanimations.option.enableSwordBlockingAnimation": "Enable Sword Blocking Animation (before 1.9.x)\nHit blocking is working only with shield option.",
+    "text.autoconfig.oldanimations.option.enableSwordBlockingAnimationShield": "Enable Sword Blocking Animation when using a shield",
     "text.autoconfig.oldanimations.option.enableLegacyPlayerList": "Enable Legacy Player List (1.7.x)"
 }
