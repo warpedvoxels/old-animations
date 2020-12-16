@@ -3,7 +3,7 @@
     "text.autoconfig.oldanimations.option.enableLegacyBowPosition": "Posição antiga do arco e flecha (1.7.x)",
     "text.autoconfig.oldanimations.option.enableLegacyRodPosition": "Posição antiga da vara de pescar (1.7.x)",
     "text.autoconfig.oldanimations.option.enableLegacySneakAnimation": "Animação antiga de agachamento (1.7.x)",
-    "text.autoconfig.oldanimations.option.enableSwordBlockingAnimation": "Bloqueamento com a espada (antes da 1.9.x)\nHit block funcionando apenas com a opção do escudo.",
+    "text.autoconfig.oldanimations.option.enableSwordBlockingAnimation": "Bloqueamento com a espada (antes da 1.9.x)",
     "text.autoconfig.oldanimations.option.enableSwordBlockingAnimationShield": "Bloqueamento com a espada quando usando um escudo (necessita ativar o outra opção)",
     "text.autoconfig.oldanimations.option.enableLegacyPlayerList": "Lista de jogadores antiga (1.7.x)"
 }
