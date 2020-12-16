@@ -5,7 +5,6 @@ import com.nekkan.oldanimations.modules.LegacySneakAnimation;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import org.spongepowered.asm.mixin.Mixin;
@@ -50,8 +49,7 @@ public class MixinLivingEntity {
 
     @Inject(at = @At(value = "HEAD"), method = "isBlocking", cancellable = true)
     public void processSwordBlock(CallbackInfoReturnable<Boolean> cir) {
-        Item item = this.activeItemStack.getItem();
-        if(item instanceof SwordItem) {
+        if(this.activeItemStack.getItem() instanceof SwordItem) {
             cir.setReturnValue(false);
         }
     }
