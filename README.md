@@ -14,7 +14,7 @@ versions to newer ones.
 * [Compiling](#compiling)
   * [Prerequisites](#prerequisites)
   * [Getting Started](#getting-started)
-* [Credits](#credits)
+* [Model Credits](#model-credits)
 * [License](#license)
 
 # Animations
@@ -79,9 +79,9 @@ Navigate to the directory you've cloned this repository and build with Gradle us
 has finished preparing the environment for you and building everything, you can find the `.jar` artifact were is located
 at `./build/libs` along the `*-dev.jar` artifact.
 
-# Credits
+# Model Credits
 
-* [Sword Blocking][sword_blocking] (models-only) by TeamMidnightDust
+* [Parry][parry] by FoundationGames
 
 # License
 
@@ -100,6 +100,6 @@ file.
 
 [curseforge]: https://www.curseforge.com/minecraft/mc-mods/old-animations
 
-[sword_blocking]: https://github.com/TeamMidnightDust/SwordBlocking
+[parry]: https://github.com/FoundationGames/Parry
 
 [semantic_versioning]: https://semver.org
