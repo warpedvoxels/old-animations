@@ -7,6 +7,7 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
@@ -40,13 +41,17 @@ public class MixinHeldItemRenderer {
         CallbackInfo callbackInfo
     ) {
         if(Items.BOW.equals(item.getItem()) && OldAnimations.isEnabled(LegacyBowPosition.class)) {
-            matrices.translate(0.0f, 0.05f, 0.04f);
-            matrices.scale(0.93f, 1.0f, 1.0f);
+            Vector3f scale = LegacyBowPosition.INSTANCE.getScale();
+            Vector3f position = LegacyBowPosition.INSTANCE.getPosition();
+            matrices.translate(position.getX(), position.getY(), position.getZ());
+            matrices.scale(scale.getX(), scale.getY(), scale.getZ());
             return;
         }
         if(Items.FISHING_ROD.equals(item.getItem()) && OldAnimations.isEnabled(LegacyRodPosition.class)) {
-            matrices.translate(0.08f, -0.027f, -0.33f);
-            matrices.scale(0.93f, 1.0f, 1.0f);
+            Vector3f scale = LegacyRodPosition.INSTANCE.getScale();
+            Vector3f position = LegacyRodPosition.INSTANCE.getPosition();
+            matrices.translate(position.getX(), position.getY(), position.getZ());
+            matrices.scale(scale.getX(), scale.getY(), scale.getZ());
         }
     }
 
