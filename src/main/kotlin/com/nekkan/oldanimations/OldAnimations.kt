@@ -43,10 +43,6 @@ fun <T: LegacyAnimation> isEnabled(javaClass: Class<T>): Boolean {
     }
 }
 
-/**
- * This code will be obviously updated later. This single-line `println` code will print when the Fabric mod start up.
- * This means that this code will be run only to functionality testing purposes.
- */
 fun init() {
     /**
      * Set the `kotlinx.coroutines.debug` property to `on` to allow Minecraft to output coroutine debug information.
@@ -76,23 +72,32 @@ private fun registerConfig() {
 private fun registerIdentifiers() {
     // Identifier used to register the blocking models to apply the sword blocking animation.
     // This option will be only disabled when game restarts.
-    if(isEnabled(SwordBlockingAnimation::class.java)) {
-        ModelLoadingRegistry.INSTANCE.registerVariantProvider { manager ->
-            ModelVariantProvider { modelId, _ ->
-                when(Identifier(modelId.namespace, modelId.path)) {
-                    Registry.ITEM.getId(Items.SHIELD) -> {
-                        val resource = manager.getResource(Identifier("oldanimations", "models/new_shield.json"))
-                        val reader = InputStreamReader(resource.inputStream)
-                        JsonUnbakedModel.deserialize(reader)
+    val config = AutoConfig.getConfigHolder(OldAnimationsConfig::class.java).config
+    if(config.enableSwordBlockingAnimation) {
+        val identifier = Identifier("blocking")
+        if(config.enableSwordBlockingAnimationShield) {
+            ModelLoadingRegistry.INSTANCE.registerVariantProvider { manager ->
+                ModelVariantProvider { modelId, _ ->
+                    when(Identifier(modelId.namespace, modelId.path)) {
+                        Registry.ITEM.getId(Items.SHIELD) -> {
+                            val resource = manager.getResource(Identifier("oldanimations", "models/new_shield.json"))
+                            val reader = InputStreamReader(resource.inputStream)
+                            JsonUnbakedModel.deserialize(reader)
+                        }
+                        else -> null
                     }
-                    else -> null
                 }
             }
-        }
-        val identifier = Identifier("blocking")
-        Registry.ITEM.forEach {
-            if(it is SwordItem) {
-                SwordBlockingAnimation.registerFor(it, identifier)
+            Registry.ITEM.forEach {
+                if(it is SwordItem) {
+                    SwordBlockingAnimation.registerWithShieldFor(it, identifier)
+                }
+            }
+        } else {
+            Registry.ITEM.forEach {
+                if(it is SwordItem) {
+                    SwordBlockingAnimation.registerFor(it, identifier)
+                }
             }
         }
     }
