@@ -17,11 +17,37 @@ public class OldAnimationsConfig implements ConfigData {
     @Comment("Remove the smooth sneaking animation from newer versions.")
     boolean enableLegacySneakAnimation = true;
 
-    @Comment("Restore the sword blocking animation when using a shield.")
-    @ConfigEntry.Gui.RequiresRestart
+    @Comment("Restore the sword blocking animation.")
     boolean enableSwordBlockingAnimation = true;
+
+    @Comment("Restore the sword blocking animation when using a shield (need the other animation toggled).")
+    @ConfigEntry.Gui.RequiresRestart
+    boolean enableSwordBlockingAnimationShield = false;
 
     @Comment("Restore the legacy player list (no footer and no header).")
     boolean enableLegacyPlayerList = false;
 
+    public boolean isEnableLegacyBowPosition() {
+        return enableLegacyBowPosition;
+    }
+
+    public boolean isEnableLegacyRodPosition() {
+        return enableLegacyRodPosition;
+    }
+
+    public boolean isEnableLegacySneakAnimation() {
+        return enableLegacySneakAnimation;
+    }
+
+    public boolean isEnableSwordBlockingAnimation() {
+        return enableSwordBlockingAnimation;
+    }
+
+    public boolean isEnableSwordBlockingAnimationShield() {
+        return enableSwordBlockingAnimationShield;
+    }
+
+    public boolean isEnableLegacyPlayerList() {
+        return enableLegacyPlayerList;
+    }
 }
