@@ -5,6 +5,7 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -30,6 +31,11 @@ public class MixinItem {
         }
         ItemStack item = player.getStackInHand(hand);
         if(item.getItem() instanceof SwordItem) {
+            ItemStack offHandItem = player.getStackInHand(Hand.OFF_HAND);
+            if(offHandItem.getItem() == Items.SHIELD) {
+                player.setCurrentHand(Hand.OFF_HAND);
+                callbackInfo.cancel();
+            }
             player.setCurrentHand(hand);
             player.setSprinting(false);
             callbackInfo.setReturnValue(TypedActionResult.consume(item));
