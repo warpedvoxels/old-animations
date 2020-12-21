@@ -8,7 +8,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,11 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public class MixinLivingEntity {
 
-    private static final float DEFAULT_EYE_HEIGHT = 1.62f;
-    private static final float LEGACY_SNEAKING_HEIGHT = 1.52f;
-    private static final float SNEAKING_HEIGHT = 1.27f;
-    private static final float SLEEPING_HEIGHT = 0.2f;
-    private static final float SPIN_ATTACK_HEIGHT = 0.4f;
+    private static final float SNEAKING_HEIGHT = 1.52f;
 
     @Shadow
     protected ItemStack activeItemStack;
@@ -30,27 +25,18 @@ public class MixinLivingEntity {
         return OldAnimations.isEnabled(LegacySneakAnimation.class);
     }
 
-    // Backport of 1.7 eye height to newer versions.
-    @Overwrite
-    public final float getEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-        switch(pose) {
-            case SWIMMING:
-            case FALL_FLYING:
-            case SPIN_ATTACK:
-                return SPIN_ATTACK_HEIGHT;
-            case SLEEPING:
-                return SLEEPING_HEIGHT;
-            case CROUCHING:
-                return isLegacySneakingEnabled() ? LEGACY_SNEAKING_HEIGHT : SNEAKING_HEIGHT;
-            default:
-                return DEFAULT_EYE_HEIGHT;
+    // Port of 1.7 sneaking eye height to newer versions.
+    @Inject(at = @At("HEAD"), method = "getEyeHeight", cancellable = true)
+    public final void processEyeHeight(EntityPose pose, EntityDimensions dimensions, CallbackInfoReturnable<Float> callbackInfo) {
+        if(pose == EntityPose.CROUCHING && isLegacySneakingEnabled()) {
+            callbackInfo.setReturnValue(SNEAKING_HEIGHT);
         }
     }
 
     @Inject(at = @At(value = "HEAD"), method = "isBlocking", cancellable = true)
-    public void processSwordBlock(CallbackInfoReturnable<Boolean> cir) {
-        if(this.activeItemStack.getItem() instanceof SwordItem) {
-            cir.setReturnValue(false);
+    public void processSwordBlock(CallbackInfoReturnable<Boolean> callbackInfo) {
+        if(activeItemStack.getItem() instanceof SwordItem) {
+            callbackInfo.setReturnValue(false);
         }
     }
 
