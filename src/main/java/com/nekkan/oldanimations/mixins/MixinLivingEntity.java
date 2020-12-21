@@ -27,7 +27,7 @@ public class MixinLivingEntity {
 
     // Port of 1.7 sneaking eye height to newer versions.
     @Inject(at = @At("HEAD"), method = "getEyeHeight", cancellable = true)
-    public final void processEyeHeight(EntityPose pose, EntityDimensions dimensions, CallbackInfoReturnable<Float> callbackInfo) {
+    public void processEyeHeight(EntityPose pose, EntityDimensions dimensions, CallbackInfoReturnable<Float> callbackInfo) {
         if(pose == EntityPose.CROUCHING && isLegacySneakingEnabled()) {
             callbackInfo.setReturnValue(SNEAKING_HEIGHT);
         }
