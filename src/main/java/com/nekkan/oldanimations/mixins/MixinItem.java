@@ -19,6 +19,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Item.class)
 public class MixinItem {
 
+    private boolean isGlobalAnimationEnabled() {
+        OldAnimationsConfig config = AutoConfig.getConfigHolder(OldAnimationsConfig.class).getConfig();
+        return config.isEnableSwordBlockingAnimation();
+    }
+
     private boolean isAnimationEnabled() {
         OldAnimationsConfig config = AutoConfig.getConfigHolder(OldAnimationsConfig.class).getConfig();
         return config.isEnableSwordBlockingAnimation() && !config.isEnableSwordBlockingAnimationShield();
@@ -38,13 +43,13 @@ public class MixinItem {
             }
             player.setCurrentHand(hand);
             player.setSprinting(false);
-            callbackInfo.setReturnValue(TypedActionResult.consume(item));
+            callbackInfo.setReturnValue(TypedActionResult.pass(item));
         }
     }
 
     @Inject(at = @At("HEAD"), method = "getUseAction", cancellable = true)
     public void processUseAction(ItemStack item, CallbackInfoReturnable<UseAction> callbackInfo) {
-        if(item.getItem() instanceof SwordItem && isAnimationEnabled()) {
+        if(item.getItem() instanceof SwordItem && isGlobalAnimationEnabled()) {
             callbackInfo.setReturnValue(UseAction.BLOCK);
         }
     }
