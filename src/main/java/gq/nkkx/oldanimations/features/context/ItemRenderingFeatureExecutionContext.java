@@ -1,6 +1,8 @@
 package gq.nkkx.oldanimations.features.context;
 
+import gq.nkkx.oldanimations.OldAnimations;
 import gq.nkkx.oldanimations.options.OldAnimationsOptions;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -18,9 +20,17 @@ public interface ItemRenderingFeatureExecutionContext extends FeatureExecutionCo
         return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, light, item, hand, matrices, progress);
     }
 
+    static ItemRenderingFeatureExecutionContext create(CallbackInfo callbackInfo, int light, ItemStack item, Hand hand,
+                                                       ItemRenderingMatrices matrices, ItemRenderingProgress progress
+    ) {
+        PlayerEntity player = MinecraftClient.getInstance().player;
+        OldAnimationsOptions options = OldAnimations.options();
+        return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, light, item, hand, matrices, progress);
+    }
+
     int lightLevel();
 
-    ItemStack item();
+    ItemStack itemStack();
 
     Hand hand();
 

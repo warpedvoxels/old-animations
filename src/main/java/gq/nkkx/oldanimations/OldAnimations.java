@@ -1,6 +1,7 @@
 package gq.nkkx.oldanimations;
 
 import gq.nkkx.oldanimations.options.OldAnimationsOptions;
+import gq.nkkx.oldanimations.registry.ItemRescalingRegistry;
 import gq.nkkx.oldanimations.utils.Lazy;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
@@ -27,6 +28,7 @@ public class OldAnimations implements ModInitializer {
     @Override
     public void onInitialize() {
         AutoConfig.register(OldAnimationsOptions.class, PartitioningSerializer.wrap(JanksonConfigSerializer::new));
+        ItemRescalingRegistry.init();
     }
 
 }

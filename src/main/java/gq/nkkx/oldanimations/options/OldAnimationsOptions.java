@@ -13,8 +13,17 @@ public class OldAnimationsOptions extends PartitioningSerializer.GlobalData {
     @Gui.TransitiveObject
     OldSneakingFeatureOptions oldSneaking = new OldSneakingFeatureOptions();
 
+    @Category("item-rescaling")
+    @Gui.CollapsibleObject
+    @Gui.TransitiveObject
+    ItemRescalingOptions itemRescaling = new ItemRescalingOptions();
+
     public OldSneakingFeatureOptions getOldSneaking() {
         return oldSneaking;
+    }
+
+    public ItemRescalingOptions getRescaling() {
+        return itemRescaling;
     }
 
 }

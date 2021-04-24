@@ -54,7 +54,7 @@ public class DefaultItemRenderingFeatureExecutionContext implements ItemRenderin
     }
 
     @Override
-    public ItemStack item() {
+    public ItemStack itemStack() {
         return item;
     }
 
