@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "old-animations",
+  "version": "${version}",
+  "name": "Old Animations",
+  "description": "Client-side modification for Fabric that allows users to restore animations from older versions.",
+  "authors": [
+    "nekkan"
+  ],
+  "contact": {
+    "repo": "https://github.com/nekkan/old-animations"
+  },
+  "license": "MIT",
+  "icon": "assets/old-animations/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "gq.nkkx.oldanimations.OldAnimationsClient"
+    ],
+    "main": [
+      "gq.nkkx.oldanimations.OldAnimations"
+    ]
+  },
+  "mixins": [
+    "old-animations.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
