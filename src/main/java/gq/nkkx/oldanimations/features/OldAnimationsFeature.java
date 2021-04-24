@@ -11,8 +11,6 @@ import gq.nkkx.oldanimations.features.context.FeatureExecutionContext;
  */
 public interface OldAnimationsFeature<T extends FeatureExecutionContext> {
 
-    boolean isEnabled();
-
     void transform(T context);
 
 }

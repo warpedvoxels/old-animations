@@ -25,10 +25,9 @@ public abstract class CameraMixin implements CameraAccess {
 
     @Inject(method = "updateEyeHeight", at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/Camera;cameraY:F", ordinal = 0))
     public void old_animations$updateEyeHeight(CallbackInfo callbackInfo) {
-        OldSneakingFeature feature = this.feature.get();
-        if (feature.isEnabled()) {
+        if (OldSneakingFeature.isEnabled()) {
             FeatureExecutionContext context = FeatureExecutionContext.create(callbackInfo);
-            feature.transform(context);
+            feature.get().transform(context);
         }
     }
 
