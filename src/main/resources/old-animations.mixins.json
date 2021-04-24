@@ -4,6 +4,7 @@
   "package": "gq.nkkx.oldanimations.client.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "render.CameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1
