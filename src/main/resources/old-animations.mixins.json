@@ -1,10 +1,8 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "gq.nkkx.oldanimations.mixin",
+  "package": "gq.nkkx.oldanimations.client.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-  ],
   "client": [
   ],
   "injectors": {

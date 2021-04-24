@@ -15,10 +15,13 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "gq.nkkx.oldanimations.OldAnimationsClient"
+      "gq.nkkx.oldanimations.client.OldAnimationsClient"
     ],
     "main": [
       "gq.nkkx.oldanimations.OldAnimations"
+    ],
+    "modmenu": [
+      "gq.nkkx.oldanimations.integration.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -27,6 +30,7 @@
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": "1.16.5"
+    "minecraft": "1.16.5",
+    "modmenu": "*"
   }
 }

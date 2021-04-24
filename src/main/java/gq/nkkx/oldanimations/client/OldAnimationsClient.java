@@ -1,4 +1,4 @@
-package gq.nkkx.oldanimations;
+package gq.nkkx.oldanimations.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
