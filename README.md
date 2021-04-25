@@ -2,6 +2,8 @@
 
 ![environment-client-badge]
 
+***Mod Menu and Fabric API are required.***
+
 📖 **About**
 
 A client-side modification for Fabric that allows users to restore animations from older versions.
