@@ -7,7 +7,6 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
 
 public class OldAnimations implements ModInitializer {
 
@@ -16,10 +15,6 @@ public class OldAnimations implements ModInitializer {
             .getConfigHolder(OldAnimationsOptions.class)
             .getConfig()
     );
-
-    public static Identifier locate(String path) {
-        return new Identifier("old-animations", path);
-    }
 
     public static OldAnimationsOptions options() {
         return options.get();

@@ -1,0 +1,9 @@
+{
+  "text.autoconfig.old-animations.title": "Old Animations",
+  "text.autoconfig.old-animations.category.old-sneaking": "Old Sneaking",
+  "text.autoconfig.old-animations.category.sword-blocking": "Sword Blocking",
+  "text.autoconfig.old-animations.category.item-rescaling": "Item Rescaling",
+  "text.autoconfig.old-animations.option.itemRescaling.isEnabled": "Is Enabled",
+  "text.autoconfig.old-animations.option.oldSneaking.isEnabled": "Is Enabled",
+  "text.autoconfig.old-animations.option.swordBlocking.isEnabled": "Is Enabled"
+}
