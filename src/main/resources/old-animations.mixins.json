@@ -7,8 +7,7 @@
     "entity.LivingEntityMixin",
     "item.ItemMixin",
     "render.CameraMixin",
-    "render.item.HeldItemRendererMixin",
-    "screen.ingame.InventoryScreenMixin"
+    "render.item.HeldItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
