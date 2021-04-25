@@ -20,7 +20,7 @@ public class ItemMixin {
 
     @Inject(at = @At("HEAD"), method = "getUseAction", cancellable = true)
     public void old_animations$getUseAction(ItemStack item, CallbackInfoReturnable<UseAction> callbackInfo) {
-        behavior.injectUseAction(callbackInfo);
+        behavior.injectUseAction(item, callbackInfo);
     }
 
     @Inject(at = @At("HEAD"), method = "use", cancellable = true)

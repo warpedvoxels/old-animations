@@ -4,6 +4,7 @@
   "package": "gq.nkkx.oldanimations.client.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "entity.LivingEntityMixin",
     "item.ItemMixin",
     "render.CameraMixin",
     "render.item.HeldItemRendererMixin"

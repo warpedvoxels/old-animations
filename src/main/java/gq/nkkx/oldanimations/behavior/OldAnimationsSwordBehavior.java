@@ -4,6 +4,7 @@ import gq.nkkx.oldanimations.client.OldAnimationsClient;
 import gq.nkkx.oldanimations.features.SwordBlockingFeature;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -11,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class OldAnimationsSwordBehavior {
 
-    public void injectUseAction(CallbackInfoReturnable<UseAction> callbackInfo) {
-        if (OldAnimationsClient.options().getSwordBlocking().isEnabled()) {
+    public void injectUseAction(ItemStack item, CallbackInfoReturnable<UseAction> callbackInfo) {
+        if (OldAnimationsClient.options().getSwordBlocking().isEnabled() && item.getItem() instanceof SwordItem) {
             callbackInfo.setReturnValue(UseAction.BLOCK);
         }
     }
