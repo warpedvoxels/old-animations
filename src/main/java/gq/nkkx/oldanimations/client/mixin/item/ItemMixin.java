@@ -1,7 +1,6 @@
 package gq.nkkx.oldanimations.client.mixin.item;
 
-import gq.nkkx.oldanimations.OldAnimations;
-import gq.nkkx.oldanimations.features.SwordBlockingFeature;
+import gq.nkkx.oldanimations.behavior.OldAnimationsSwordBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,20 +16,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Item.class)
 public class ItemMixin {
 
+    private static final OldAnimationsSwordBehavior behavior = new OldAnimationsSwordBehavior();
+
     @Inject(at = @At("HEAD"), method = "getUseAction", cancellable = true)
     public void old_animations$getUseAction(ItemStack item, CallbackInfoReturnable<UseAction> callbackInfo) {
-        if (OldAnimations.options().getSwordBlocking().isEnabled()) {
-            callbackInfo.setReturnValue(UseAction.BLOCK);
-        }
+        behavior.injectUseAction(callbackInfo);
     }
 
     @Inject(at = @At("HEAD"), method = "use", cancellable = true)
     public void old_animations$use(
         World world, PlayerEntity player, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> callbackInfo
     ) {
-        if (SwordBlockingFeature.isEnabled()) {
-            SwordBlockingFeature.LAZY.get().use(player, hand, callbackInfo);
-        }
+        behavior.use(player, hand, callbackInfo);
     }
 
 }

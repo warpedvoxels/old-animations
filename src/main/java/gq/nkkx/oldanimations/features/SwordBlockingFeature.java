@@ -1,6 +1,6 @@
 package gq.nkkx.oldanimations.features;
 
-import gq.nkkx.oldanimations.OldAnimations;
+import gq.nkkx.oldanimations.client.OldAnimationsClient;
 import gq.nkkx.oldanimations.features.context.ItemRenderingFeatureExecutionContext;
 import gq.nkkx.oldanimations.utils.Lazy;
 import net.minecraft.client.util.math.MatrixStack;
@@ -18,7 +18,7 @@ public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingF
     public static final Lazy<SwordBlockingFeature> LAZY = Lazy.create(SwordBlockingFeature::new);
 
     public static boolean isEnabled() {
-        return OldAnimations.options().getSwordBlocking().isEnabled();
+        return OldAnimationsClient.options().getSwordBlocking().isEnabled();
     }
 
     public void use(PlayerEntity player, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> callbackInfo) {

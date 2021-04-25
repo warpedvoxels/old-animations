@@ -1,6 +1,6 @@
 package gq.nkkx.oldanimations.features.context;
 
-import gq.nkkx.oldanimations.OldAnimations;
+import gq.nkkx.oldanimations.client.OldAnimationsClient;
 import gq.nkkx.oldanimations.features.OldAnimationsFeature;
 import gq.nkkx.oldanimations.options.OldAnimationsOptions;
 import net.minecraft.client.MinecraftClient;
@@ -19,8 +19,12 @@ public interface FeatureExecutionContext {
         return new DefaultFeatureExecutionContext(player, options, callbackInfo);
     }
 
+    static FeatureExecutionContext create(PlayerEntity playerEntity, CallbackInfo callbackInfo) {
+        return create(playerEntity, OldAnimationsClient.options(), callbackInfo);
+    }
+
     static FeatureExecutionContext create(CallbackInfo callbackInfo) {
-        return create(MinecraftClient.getInstance().player, OldAnimations.options(), callbackInfo);
+        return create(MinecraftClient.getInstance().player, OldAnimationsClient.options(), callbackInfo);
     }
 
     PlayerEntity player();

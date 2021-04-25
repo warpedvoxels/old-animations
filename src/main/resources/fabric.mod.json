@@ -17,9 +17,6 @@
     "client": [
       "gq.nkkx.oldanimations.client.OldAnimationsClient"
     ],
-    "main": [
-      "gq.nkkx.oldanimations.OldAnimations"
-    ],
     "modmenu": [
       "gq.nkkx.oldanimations.integration.ModMenuIntegration"
     ]

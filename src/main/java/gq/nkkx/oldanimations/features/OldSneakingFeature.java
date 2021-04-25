@@ -1,6 +1,6 @@
 package gq.nkkx.oldanimations.features;
 
-import gq.nkkx.oldanimations.OldAnimations;
+import gq.nkkx.oldanimations.client.OldAnimationsClient;
 import gq.nkkx.oldanimations.features.context.FeatureExecutionContext;
 import gq.nkkx.oldanimations.utils.CameraAccess;
 import net.minecraft.client.MinecraftClient;
@@ -11,7 +11,7 @@ public class OldSneakingFeature implements OldAnimationsFeature<FeatureExecution
     // private static final Lazy<OldSneakingFeatureOptions> options = Lazy.create(() -> OldAnimations.options().getOldSneaking());
 
     public static boolean isEnabled() {
-        return OldAnimations.options().getOldSneaking().isEnabled();
+        return OldAnimationsClient.options().getOldSneaking().isEnabled();
     }
 
     @Override

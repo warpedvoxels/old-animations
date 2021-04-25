@@ -1,6 +1,6 @@
 package gq.nkkx.oldanimations.features;
 
-import gq.nkkx.oldanimations.OldAnimations;
+import gq.nkkx.oldanimations.client.OldAnimationsClient;
 import gq.nkkx.oldanimations.features.context.ItemRenderingFeatureExecutionContext;
 import gq.nkkx.oldanimations.registry.ItemRescalingRegistry;
 import gq.nkkx.oldanimations.utils.ItemRescaling;
@@ -15,7 +15,7 @@ public class ItemRescalingFeature implements ItemRenderingFeature<ItemRenderingF
     // private static final Lazy<OldSneakingFeatureOptions> options = Lazy.create(() -> OldAnimations.options().getRescaling());
 
     public static boolean isEnabled() {
-        return OldAnimations.options().getRescaling().isEnabled();
+        return OldAnimationsClient.options().getRescaling().isEnabled();
     }
 
     @Override

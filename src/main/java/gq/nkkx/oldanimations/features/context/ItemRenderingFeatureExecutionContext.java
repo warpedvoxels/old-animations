@@ -1,6 +1,6 @@
 package gq.nkkx.oldanimations.features.context;
 
-import gq.nkkx.oldanimations.OldAnimations;
+import gq.nkkx.oldanimations.client.OldAnimationsClient;
 import gq.nkkx.oldanimations.options.OldAnimationsOptions;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +24,7 @@ public interface ItemRenderingFeatureExecutionContext extends FeatureExecutionCo
                                                        ItemRenderingMatrices matrices, ItemRenderingProgress progress
     ) {
         PlayerEntity player = MinecraftClient.getInstance().player;
-        OldAnimationsOptions options = OldAnimations.options();
+        OldAnimationsOptions options = OldAnimationsClient.options();
         return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, item, hand, matrices, progress);
     }
 
