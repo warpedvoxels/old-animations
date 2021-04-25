@@ -20,7 +20,7 @@ public class ItemRenderingProgress {
         return equipProgress;
     }
 
-    private float tickDelta() {
+    public float tickDelta() {
         return tickDelta;
     }
 

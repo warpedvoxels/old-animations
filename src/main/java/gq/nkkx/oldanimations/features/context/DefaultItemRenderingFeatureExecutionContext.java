@@ -13,18 +13,16 @@ public class DefaultItemRenderingFeatureExecutionContext implements ItemRenderin
     private final CallbackInfo callbackInfo;
     private final PlayerEntity player;
     private final OldAnimationsOptions options;
-    private final int light;
     private final ItemStack item;
     private final Hand hand;
     private final ItemRenderingMatrices matrices;
     private final ItemRenderingProgress progress;
 
     public DefaultItemRenderingFeatureExecutionContext(
-        CallbackInfo callbackInfo, PlayerEntity player, OldAnimationsOptions options, int light, ItemStack item,
+        CallbackInfo callbackInfo, PlayerEntity player, OldAnimationsOptions options, ItemStack item,
         Hand hand, ItemRenderingMatrices matrices, ItemRenderingProgress progress
     ) {
         this.callbackInfo = callbackInfo;
-        this.light = light;
         this.item = item;
         this.hand = hand;
         this.matrices = matrices;
@@ -46,11 +44,6 @@ public class DefaultItemRenderingFeatureExecutionContext implements ItemRenderin
     @Override
     public CallbackInfo callbackInfo() {
         return callbackInfo;
-    }
-
-    @Override
-    public int lightLevel() {
-        return light;
     }
 
     @Override

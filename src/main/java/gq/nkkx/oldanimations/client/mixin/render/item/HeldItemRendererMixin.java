@@ -1,6 +1,7 @@
 package gq.nkkx.oldanimations.client.mixin.render.item;
 
 import gq.nkkx.oldanimations.features.ItemRescalingFeature;
+import gq.nkkx.oldanimations.features.SwordBlockingFeature;
 import gq.nkkx.oldanimations.features.context.ItemRenderingFeatureExecutionContext;
 import gq.nkkx.oldanimations.features.context.ItemRenderingMatrices;
 import gq.nkkx.oldanimations.features.context.ItemRenderingProgress;
@@ -10,6 +11,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.HeldItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(HeldItemRenderer.class)
 public class HeldItemRendererMixin {
 
-    private static final Lazy<ItemRescalingFeature> feature = Lazy.create(ItemRescalingFeature::new);
+    private static final Lazy<ItemRescalingFeature> itemRescalingFeature = Lazy.create(ItemRescalingFeature::new);
 
     @Inject(
         at = @At(
@@ -29,7 +31,7 @@ public class HeldItemRendererMixin {
         method = "renderFirstPersonItem",
         cancellable = true
     )
-    private void renderFirstPersonItem(
+    private void old_animations$renderFirstPersonItem(
         AbstractClientPlayerEntity player,
         float tickDelta,
         float pitch,
@@ -44,10 +46,17 @@ public class HeldItemRendererMixin {
     ) {
         if (ItemRescalingFeature.isEnabled()) {
             ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
-                callbackInfo, light, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
+                callbackInfo, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
                 new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
             );
-            feature.get().transform(context);
+            itemRescalingFeature.get().transform(context);
+        }
+        if (SwordBlockingFeature.isEnabled() && item.getItem() instanceof SwordItem && player.isUsingItem()) {
+            ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
+                callbackInfo, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
+                new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
+            );
+            SwordBlockingFeature.LAZY.get().transform(context);
         }
     }
 

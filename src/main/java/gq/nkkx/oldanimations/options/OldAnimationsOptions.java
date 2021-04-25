@@ -18,12 +18,21 @@ public class OldAnimationsOptions extends PartitioningSerializer.GlobalData {
     @Gui.TransitiveObject
     ItemRescalingOptions itemRescaling = new ItemRescalingOptions();
 
+    @Category("sword-blocking")
+    @Gui.CollapsibleObject
+    @Gui.TransitiveObject
+    SwordBlockingOptions swordBlocking = new SwordBlockingOptions();
+
     public OldSneakingFeatureOptions getOldSneaking() {
         return oldSneaking;
     }
 
     public ItemRescalingOptions getRescaling() {
         return itemRescaling;
+    }
+
+    public SwordBlockingOptions getSwordBlocking() {
+        return swordBlocking;
     }
 
 }

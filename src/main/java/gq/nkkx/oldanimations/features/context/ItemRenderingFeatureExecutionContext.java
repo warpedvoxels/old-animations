@@ -13,22 +13,20 @@ import java.util.Optional;
 public interface ItemRenderingFeatureExecutionContext extends FeatureExecutionContext {
 
     static ItemRenderingFeatureExecutionContext create(CallbackInfo callbackInfo, PlayerEntity player,
-                                                       OldAnimationsOptions options, int light, ItemStack item,
+                                                       OldAnimationsOptions options, ItemStack item,
                                                        Hand hand, ItemRenderingMatrices matrices,
                                                        ItemRenderingProgress progress
     ) {
-        return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, light, item, hand, matrices, progress);
+        return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, item, hand, matrices, progress);
     }
 
-    static ItemRenderingFeatureExecutionContext create(CallbackInfo callbackInfo, int light, ItemStack item, Hand hand,
+    static ItemRenderingFeatureExecutionContext create(CallbackInfo callbackInfo, ItemStack item, Hand hand,
                                                        ItemRenderingMatrices matrices, ItemRenderingProgress progress
     ) {
         PlayerEntity player = MinecraftClient.getInstance().player;
         OldAnimationsOptions options = OldAnimations.options();
-        return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, light, item, hand, matrices, progress);
+        return new DefaultItemRenderingFeatureExecutionContext(callbackInfo, player, options, item, hand, matrices, progress);
     }
-
-    int lightLevel();
 
     ItemStack itemStack();
 
