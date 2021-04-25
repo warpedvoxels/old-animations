@@ -23,6 +23,15 @@ public class OldAnimationsOptions extends PartitioningSerializer.GlobalData {
     @Gui.TransitiveObject
     SwordBlockingOptions swordBlocking = new SwordBlockingOptions();
 
+    @Category("centered-inventory")
+    @Gui.CollapsibleObject
+    @Gui.TransitiveObject
+    CenteredInventoryOptions centeredInventory = new CenteredInventoryOptions();
+
+    public CenteredInventoryOptions getCenteredInventory() {
+        return centeredInventory;
+    }
+
     public OldSneakingFeatureOptions getOldSneaking() {
         return oldSneaking;
     }
