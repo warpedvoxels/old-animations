@@ -10,7 +10,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-public class OldAnimationsSwordBehavior {
+public class OldAnimationsSwordBehavior implements IBehavior {
 
     public void injectUseAction(ItemStack item, CallbackInfoReturnable<UseAction> callbackInfo) {
         if (OldAnimationsClient.options().getSwordBlocking().isEnabled() && item.getItem() instanceof SwordItem) {
