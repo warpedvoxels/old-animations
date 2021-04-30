@@ -21,8 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingFeatureExecutionContext>, ThirdPersonTransformer {
 
     public static final Lazy<SwordBlockingFeature> LAZY = Lazy.create(SwordBlockingFeature::new);
-    private static final Quaternion THIRD_PERSON_QUATERNION = Vector3f.POSITIVE_Y.getDegreesQuaternion(-50f);
-    private static final Quaternion NEGATIVE_THIRD_PERSON_QUATERNION = Vector3f.POSITIVE_Y.getDegreesQuaternion(50f);
+    private static final Quaternion THIRD_PERSON_QUATERNION = new Quaternion(Vector3f.POSITIVE_Y, -45f, true);
+    private static final Quaternion NEGATIVE_THIRD_PERSON_QUATERNION = new Quaternion(Vector3f.POSITIVE_Y, 45f, true);
 
     public static boolean isEnabled() {
         return OldAnimationsClient.options().getSwordBlocking().isEnabled();
@@ -62,10 +62,10 @@ public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingF
         if (isSwordBlocking(livingEntity)) {
             MatrixStack stack = matrices.stack();
             if (livingEntity.getStackInHand(Hand.MAIN_HAND).getItem() instanceof SwordItem) {
-                stack.translate(-0.14142136f, 0.05f, 0.14142136f);
+                stack.translate(-0.14142136f, -0.05f, 0.14142136f);
                 stack.multiply(THIRD_PERSON_QUATERNION);
             } else {
-                stack.translate(0.14142136f, 0.05f, 0.14142136f);
+                stack.translate(0.14142136f, -0.05f, 0.14142136f);
                 stack.multiply(NEGATIVE_THIRD_PERSON_QUATERNION);
             }
         }
@@ -76,7 +76,7 @@ public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingF
         if (isSwordBlocking(livingEntity)) {
             PlayerEntityModel<?> playerEntityModel = (PlayerEntityModel<?>) model;
             int side = livingEntity.getStackInHand(Hand.MAIN_HAND).getItem() instanceof SwordItem ? 1 : -1;
-            (side == 1 ? playerEntityModel.rightArm : playerEntityModel.leftArm).pitch = -0.5f;
+            (side == 1 ? playerEntityModel.rightArm : playerEntityModel.leftArm).pitch = -0.75f;
         }
     }
 }
