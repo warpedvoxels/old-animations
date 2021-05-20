@@ -9,7 +9,9 @@ import gq.nkkx.oldanimations.utils.Lazy;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -30,12 +32,22 @@ public class OldAnimationsHeldItemRenderer {
         VertexConsumerProvider vertexConsumers,
         CallbackInfo callbackInfo
     ) {
-        if (SwordBlockingFeature.isEnabled() && item.getItem() instanceof SwordItem && player.isUsingItem()) {
-            ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
-                callbackInfo, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
-                new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
-            );
-            SwordBlockingFeature.LAZY.get().transform(context);
+        if (SwordBlockingFeature.isEnabled()) {
+            if (SwordBlockingFeature.hasSwordAndShield(player)) {
+                if (SwordBlockingFeature.isOffhand(player, item)) {
+                    callbackInfo.cancel();
+                    return;
+                }
+            } else {
+                return;
+            }
+            if (SwordBlockingFeature.isSwordBlocking(player)) {
+                ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
+                        callbackInfo, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
+                        new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
+                );
+                SwordBlockingFeature.LAZY.get().transform(context);
+            }
             return;
         }
         if (ItemRescalingFeature.isEnabled()) {

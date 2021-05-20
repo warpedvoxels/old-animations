@@ -16,10 +16,8 @@ public class OldSneakingFeature implements OldAnimationsFeature<FeatureExecution
 
     @Override
     public void transform(FeatureExecutionContext context) {
-        if (context.player().isSneaking()) {
-            CameraAccess camera = (CameraAccess) MinecraftClient.getInstance().gameRenderer.getCamera();
-            camera.setCameraY(camera.getFocusedEntity().getStandingEyeHeight());
-        }
+        CameraAccess camera = (CameraAccess) MinecraftClient.getInstance().gameRenderer.getCamera();
+        camera.setCameraY(camera.getFocusedEntity().getStandingEyeHeight());
     }
 
 }
