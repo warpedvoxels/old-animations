@@ -10,7 +10,7 @@ public class OldAnimationsThirdPersonModelRenderer {
     public void transformThirdPersonModel(LivingEntity entity,
                 PlayerEntityModelAccess entityModelAccess,
                 float ticks) {
-        if (SwordBlockingFeature.isEnabled()) {
+        if (SwordBlockingFeature.isEnabled() && SwordBlockingFeature.isSwordBlocking(entity)) {
             SwordBlockingFeature.LAZY.get().transformThirdPersonEntity(entityModelAccess, entity, ticks);
         }
     }

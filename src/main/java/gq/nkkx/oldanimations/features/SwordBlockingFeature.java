@@ -44,14 +44,12 @@ public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingF
 
     @Override
     public void transform(ItemRenderingFeatureExecutionContext context) {
-        if (isSwordBlocking(context.player())) {
-            int side = context.player().getMainArm() == Arm.RIGHT ? 1 : -1;
-            MatrixStack matrices = context.matrices().stack();
-            matrices.translate(side * -0.14142136f, 0.08f, 0.14142136f);
-            matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(-102.25f));
-            matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(side * 13.365f));
-            matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(side * 78.05f));
-        }
+        int side = context.player().getMainArm() == Arm.RIGHT ? 1 : -1;
+        MatrixStack matrices = context.matrices().stack();
+        matrices.translate(side * -0.14142136f, 0.08f, 0.14142136f);
+        matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(-102.25f));
+        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(side * 13.365f));
+        matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(side * 78.05f));
     }
 
     @Override
@@ -68,7 +66,7 @@ public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingF
 
     @Override
     public void transformThirdPersonEntity(PlayerEntityModelAccess model, LivingEntity livingEntity, float ticks) {
-        if (isSwordBlocking(livingEntity) && hasSwordAndShield(livingEntity)) {
+        if (hasSwordAndShield(livingEntity)) {
             PlayerEntityModel<?> playerEntityModel = (PlayerEntityModel<?>) model;
             (livingEntity.getMainArm() == Arm.RIGHT ? playerEntityModel.rightArm : playerEntityModel.leftArm).pitch =
                     -0.75f;
