@@ -19,7 +19,7 @@ public class PlayerRendererMixin {
     @Inject(at = @At("HEAD"), method = "getArmPose", cancellable = true)
     private static void old_animations$getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand,
             CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-        if (SwordBlockingFeature.isEnabled() && SwordBlockingFeature.hasSwordAndShield(abstractClientPlayerEntity) && hand == Hand.OFF_HAND) {
+        if (SwordBlockingFeature.isEnabled() && SwordBlockingFeature.LAZY.get().shouldHideItem(abstractClientPlayerEntity, hand)) {
             cir.setReturnValue(BipedEntityModel.ArmPose.EMPTY);
         }
     }

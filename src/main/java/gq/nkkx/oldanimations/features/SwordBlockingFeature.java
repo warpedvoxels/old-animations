@@ -5,6 +5,7 @@ import gq.nkkx.oldanimations.features.context.ItemRenderingFeatureExecutionConte
 import gq.nkkx.oldanimations.features.context.ItemRenderingMatrices;
 import gq.nkkx.oldanimations.utils.Lazy;
 import gq.nkkx.oldanimations.utils.PlayerEntityModelAccess;
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
@@ -30,46 +31,55 @@ public class SwordBlockingFeature implements ItemRenderingFeature<ItemRenderingF
         return OldAnimationsClient.options().getSwordBlocking().isEnabled();
     }
 
-    public static boolean isOffhand(LivingEntity entity, ItemStack item) {
-        return entity.getEquippedStack(EquipmentSlot.OFFHAND) == item;
-    }
-
-    public static boolean hasSwordAndShield(LivingEntity entity) {
+    private boolean hasSwordAndShield(LivingEntity entity) {
         return entity.getEquippedStack(EquipmentSlot.OFFHAND).getItem() instanceof ShieldItem && entity.getEquippedStack(EquipmentSlot.MAINHAND).getItem() instanceof SwordItem;
     }
 
-    public static boolean isSwordBlocking(LivingEntity livingEntity) {
-        return livingEntity.getActiveItem().getItem() instanceof ShieldItem && livingEntity.isUsingItem();
+    private boolean isSwordBlocking(LivingEntity entity) {
+        return hasSwordAndShield(entity) && entity.getActiveItem().getItem() instanceof ShieldItem && entity.isUsingItem();
+    }
+
+    public boolean shouldHideItem(LivingEntity entity, Hand hand) {
+        return hasSwordAndShield(entity) && hand == Hand.OFF_HAND;
+    }
+
+    public boolean shouldHideItem(LivingEntity entity, ItemStack stack) {
+        return hasSwordAndShield(entity) && stack.getItem() instanceof ShieldItem;
     }
 
     @Override
     public void transform(ItemRenderingFeatureExecutionContext context) {
-        int side = context.player().getMainArm() == Arm.RIGHT ? 1 : -1;
-        MatrixStack matrices = context.matrices().stack();
-        matrices.translate(side * -0.14142136f, 0.08f, 0.14142136f);
-        matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(-102.25f));
-        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(side * 13.365f));
-        matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(side * 78.05f));
+        if(isSwordBlocking(context.player())) {
+            int side = context.player().getMainArm() == Arm.RIGHT ? 1 : -1;
+            MatrixStack matrices = context.matrices().stack();
+            matrices.translate(side * -0.14142136f, 0.08f, 0.14142136f);
+            matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(-102.25f));
+            matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(side * 13.365f));
+            matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(side * 78.05f));
+        }
     }
 
     @Override
     public void transformThirdPersonItem(LivingEntity livingEntity, ItemRenderingMatrices matrices) {
-        MatrixStack stack = matrices.stack();
-        if (livingEntity.getMainArm() == Arm.RIGHT) {
-            stack.translate(-0.14142136f, -0.05f, 0.14142136f);
-            stack.multiply(THIRD_PERSON_QUATERNION);
-        } else {
-            stack.translate(0.14142136f, -0.05f, 0.14142136f);
-            stack.multiply(NEGATIVE_THIRD_PERSON_QUATERNION);
+        if(isSwordBlocking(livingEntity)) {
+            MatrixStack stack = matrices.stack();
+            if (livingEntity.getMainArm() == Arm.RIGHT) {
+                stack.translate(-0.14142136f, -0.05f, 0.14142136f);
+                stack.multiply(THIRD_PERSON_QUATERNION);
+            } else {
+                stack.translate(0.14142136f, -0.05f, 0.14142136f);
+                stack.multiply(NEGATIVE_THIRD_PERSON_QUATERNION);
+            }
         }
     }
 
     @Override
     public void transformThirdPersonEntity(PlayerEntityModelAccess model, LivingEntity livingEntity, float ticks) {
-        if (hasSwordAndShield(livingEntity)) {
+        if (isSwordBlocking(livingEntity)) {
             PlayerEntityModel<?> playerEntityModel = (PlayerEntityModel<?>) model;
-            (livingEntity.getMainArm() == Arm.RIGHT ? playerEntityModel.rightArm : playerEntityModel.leftArm).pitch =
-                    -0.75f;
+            ModelPart mainArm = (livingEntity.getMainArm() == Arm.RIGHT ? playerEntityModel.rightArm :
+                    playerEntityModel.leftArm);
+            mainArm.pitch = -0.75f;
         }
     }
 }

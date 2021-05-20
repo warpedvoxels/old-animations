@@ -13,19 +13,13 @@ public class OldAnimationsThirdPersonItemRenderer {
 
     public void transformThirdPersonItem(LivingEntity entity, ItemStack item,
             ItemRenderingMatrices matrices, CallbackInfo callback) {
-
         if (SwordBlockingFeature.isEnabled()) {
-            if (SwordBlockingFeature.hasSwordAndShield(entity)) {
-                if (SwordBlockingFeature.isOffhand(entity, item)) {
-                    callback.cancel();
-                    return;
-                }
-            } else {
+            SwordBlockingFeature feature = SwordBlockingFeature.LAZY.get();
+            if (feature.shouldHideItem(entity, item)) {
+                callback.cancel();
                 return;
             }
-            if (SwordBlockingFeature.isSwordBlocking(entity)) {
-                SwordBlockingFeature.LAZY.get().transformThirdPersonItem(entity, matrices);
-            }
+            feature.transformThirdPersonItem(entity, matrices);
         }
     }
 

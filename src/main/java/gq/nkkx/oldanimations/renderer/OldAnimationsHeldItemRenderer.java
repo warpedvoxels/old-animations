@@ -33,21 +33,17 @@ public class OldAnimationsHeldItemRenderer {
         CallbackInfo callbackInfo
     ) {
         if (SwordBlockingFeature.isEnabled()) {
-            if (SwordBlockingFeature.hasSwordAndShield(player)) {
-                if (SwordBlockingFeature.isOffhand(player, item)) {
-                    callbackInfo.cancel();
-                    return;
-                }
-            } else {
+            SwordBlockingFeature feature = SwordBlockingFeature.LAZY.get();
+            if(feature.shouldHideItem(player, hand)) {
+                callbackInfo.cancel();
                 return;
             }
-            if (SwordBlockingFeature.isSwordBlocking(player)) {
-                ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
-                        callbackInfo, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
-                        new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
-                );
-                SwordBlockingFeature.LAZY.get().transform(context);
-            }
+
+            ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
+                    callbackInfo, item, hand, new ItemRenderingMatrices(vertexConsumers, matrixStack),
+                    new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
+            );
+            feature.transform(context);
             return;
         }
         if (ItemRescalingFeature.isEnabled()) {
