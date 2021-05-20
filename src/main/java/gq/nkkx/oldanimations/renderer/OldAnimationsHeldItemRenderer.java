@@ -44,7 +44,6 @@ public class OldAnimationsHeldItemRenderer {
                     new ItemRenderingProgress(swingProgress, equipProgress, tickDelta)
             );
             feature.transform(context);
-            return;
         }
         if (ItemRescalingFeature.isEnabled()) {
             ItemRenderingFeatureExecutionContext context = ItemRenderingFeatureExecutionContext.create(
