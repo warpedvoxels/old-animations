@@ -4,12 +4,11 @@
   "package": "gq.nkkx.oldanimations.client.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "entity.LivingEntityMixin",
-    "item.ItemMixin",
     "render.CameraMixin",
     "render.entity.feature.HeldItemFeatureRendererMixin",
     "render.entity.model.PlayerEntityModelMixin",
-    "render.item.HeldItemRendererMixin"
+    "render.item.HeldItemRendererMixin",
+    "render.entity.PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

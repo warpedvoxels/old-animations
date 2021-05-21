@@ -11,6 +11,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
+import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,12 +22,15 @@ public class HeldItemFeatureRendererMixin<T extends LivingEntity, M extends Enti
 
     private static final OldAnimationsThirdPersonItemRenderer renderer = new OldAnimationsThirdPersonItemRenderer();
 
-    @Inject(method = "renderItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;push()V"))
+    @Inject(method = "renderItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;" +
+            "push()V"), cancellable = true)
     private void old_animations$renderItem(
         LivingEntity entity, ItemStack stack, ModelTransformation.Mode transformationMode, Arm arm, MatrixStack matrices,
         VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci
     ) {
-        renderer.transformThirdPersonItem(entity, new ItemRenderingMatrices(vertexConsumers, matrices));
+        renderer.transformThirdPersonItem(entity, stack,
+                new ItemRenderingMatrices(vertexConsumers,
+                matrices), ci);
     }
 
 }
