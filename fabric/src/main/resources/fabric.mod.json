@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "oldanimations",
+  "version": "${version}",
+  "name": "Old Animations",
+  "description": "Restore animations from older Minecraft versions.",
+  "contact": {
+    "homepage": "https://git.hexalite.org",
+    "sources": "https://git.hexalite.org/old-animations",
+    "issues": "https://git.hexalite.org/old-animations/issues"
+  },
+  "authors": [
+    {
+      "name": "Pedro Henrique",
+      "contact": {
+        "homepage": "https://git.exst.fun",
+        "sources": "https://git.exst.fun",
+        "email": "hello@exst.fun"
+      }
+    }
+  ],
+  "license": [
+    "MIT"
+  ],
+  "icon": "assets/oldanimations/logo.gif",
+  "entrypoints": {
+    "client": [
+      "org.hexalite.fabric.oldanimations.OldAnimationsFabricInitializer"
+    ]
+  },
+  "environment": "client",
+  "mixins": [
+    "oldanimations.mixins.json"
+  ]
+}
