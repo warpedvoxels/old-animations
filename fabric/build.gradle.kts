@@ -33,6 +33,7 @@ tasks {
     }
     compileJava {
         options.encoding = "UTF-8"
+        options.release.set(17)
     }
     // If you plan to use a different file for the license, don't forget to change the file name here!
     jar {
@@ -43,10 +44,8 @@ tasks {
 }
 
 java {
-    // This project uses Java 18.
-    sourceCompatibility = JavaVersion.VERSION_18
-
     // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+    sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
     // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
