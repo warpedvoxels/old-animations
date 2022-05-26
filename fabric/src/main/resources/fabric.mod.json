@@ -22,7 +22,7 @@
   "license": [
     "MIT"
   ],
-  "icon": "assets/oldanimations/logo.gif",
+  "icon": "assets/oldanimations/logo.png",
   "entrypoints": {
     "client": [
       "org.hexalite.fabric.oldanimations.OldAnimationsFabricInitializer"
